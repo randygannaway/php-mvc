@@ -5,20 +5,18 @@ namespace Core;
 class Router
 {
 
+    // Arrays for routes and route parameters
     protected $routes = [];
 
     protected $params = [];
 
+    // Create routing table by mapping parameters to routes
     public function add($route, $params = []) 
     {
         $this->routes[$route] = $params;
     }   
 
-    public function getRoutes() 
-    {
-        return $this->routes;
-    }
-
+    // Check that requested URL is in route table
     public function match($url)
     {
         foreach ($this->routes as $route => $params){
@@ -31,6 +29,7 @@ class Router
         return false;
     }
 
+    // Instantiate requested controller and call required action method
     public function dispatch($url)
     {
         $url = $this->removeQueryStringVariables($url);
@@ -58,6 +57,7 @@ class Router
         }
     }
 
+    // Remove query variables from URL for route matching
     public function removeQueryStringVariables($url)
     {
         if ($url != '') {
