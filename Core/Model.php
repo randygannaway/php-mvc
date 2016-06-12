@@ -2,33 +2,28 @@
 
 namespace Core;
 
-use App\Config;
 use PDO;
+use App\Config;
 
-// Base model 
-class Model
+abstract class Model
 {
+ 
+    public static function getDb() {
+    
+        static $db = null;
 
-        // Create a static reusable connection for other models
-        protected static function getDB()
-        {
-            static $db = null;
+        if ($db === null) {
+            try {
+                $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' .
+                Config::DB_NAME . ';charset=utf8';     
 
-            if ($db === null) {
-                try {
+                $db = new PDO($dsn, Config::DB_USER, Config::DB_PASS);
 
-                    // Connect to db using PDO        
-                    $dsn = 'mysql:host=' . Config::DB_HOST . ';dbname=' . Config::DB_NAME . ';charset=utf8';
+                return $db;                
 
-                    $db = new PDO($dsn, Config::DB_USER, Config::DB_PASS);
-
-                    return $db;
-
-                } catch (PDOException $e) {
-            
-                    // Return error messages from failed connection
-                    echo $e->getMessage();
-                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
             }
-}
+        } 
+    }   
 }

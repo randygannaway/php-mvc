@@ -1,25 +1,19 @@
-<?php 
+<?php
 
 namespace Core;
 
 class View
 {
-
-    public function renderView($view, $args = [])
+    public static function render($view, $args = [])
     {
-        
-        // Extract variables passed to the view as an array
         extract($args, EXTR_SKIP);
 
-        // Get layout and file paths
-        $layout = dirname(__DIR__) . '/' . 'App/Views/layout.php';
-        $file = dirname(__DIR__) . '/' . 'App/Views/' . $view;        
-        
-        // Check that file exist and extend layout
+        $file = "../App/Views/$view" . ".php";
+
         if (is_readable($file)) {
-            require $layout;
+            include "../App/Views/layout.php";
         } else {
-            echo "$file not found";
+            echo "View not found";
         }
     }
 }

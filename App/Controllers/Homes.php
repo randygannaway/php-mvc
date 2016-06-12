@@ -2,22 +2,23 @@
 
 namespace App\Controllers;
 
-use \Core\View;
-use \App\Models\Home;
+use Core\View;
+use App\Models\HomeModel;
 
-// Homes class for homepage actions
-class Homes 
+class Homes
 {
-    
-    // get all events and return the index for the homepage
-    public function index($params = [])
+    public function index()
     {
-        
-        // Get events from Home model   
-        $events = Home::getAll();
+        View::render("home");
+    }
 
-        // Call Core\View to pass events to home index page
-        View::renderView("Home/index.php", ['events' => $events]);
+
+    public function add()
+    {
+
+        $stars = HomeModel::getStars();
+
+        View::render("add", [$_GET, $stars[0]]);
     }
 
 }
