@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Auth;
+
 class Router
 {
     
@@ -38,9 +40,9 @@ class Router
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = "App\Controllers\\$controller";
- 
+
             if (class_exists($controller)) {
-                $controller_object = new $controller;
+                $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];
 

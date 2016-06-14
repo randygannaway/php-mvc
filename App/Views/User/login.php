@@ -5,48 +5,42 @@
  */
 
 //Initialisation
-require_once('includes/init.php');
+// require_once('includes/init.php');
 
 // Require guest
-Auth::getInstance()->requireGuest();
+//Auth::getInstance()->requireGuest();
 
 // Get checked status of the "remember "me option
 $remember_me = isset($_POST['remember_me']);
 
 // Process the submitted form
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $email = $_POST['email'];
+  //  $email = $_POST['email'];
 
-    if (Auth::getInstance()->login($email, $_POST['password'], $remember_me)) {
+//    if (Auth::getInstance()->login($email, $_POST['password'], $remember_me)) {
        
-var_dump($_SESSION['return_to']); 
-        // Redirect to home page
-        if (isset($_SESSION['return_to'])) {
-            $url = $_SESSION['return_to'];
-            unset($_SESSION['return_to']);
-        } else {
-echo "noURL";
-            $url = '/index.php';
-        }
-
+    if ($_SESSION['password_invalid'] == true) {
+        $message = "That information does not match our recoreds.";
     }
-//        Util::redirect($url);
 
-}
+   // }
+
+//}
 
 
 
 $page_title = 'Login';
-include('includes/header.php');
 
 ?>
 
-<?php if (isset($email)): ?>
-    <p>Invalid login</p>
-<?php endif; ?>
+<?php 
+    if (isset($message)) {
+        echo $message;
+    }   
+?>
 
-<form method="post" id="signupForm">
+<form method="post" id="signupForm" action="/auth/login">
     <div>
         <label for="email">Email Address</label>
         <input id="email" name="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>" />
@@ -66,4 +60,3 @@ include('includes/header.php');
     <input type="submit" value="Login" />
 </form>
 
-<?php include('includes/footer.php'); ?>

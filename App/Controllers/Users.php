@@ -2,123 +2,37 @@
 
 namespace App\Controllers;
 
-class Users
+use Core\View;
+use Core\Auth;
+use App\Models\UserModel;
+
+class Users extends \Core\Controller
 {
-
-    public $errors;
-
-    public static function signup($data)
+    public function __construct()
     {
-        $user = new static();
-
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = $data['password'];
-
-        if ($user->isValid()) {
-
-            try {
-                
-                $db = Database::getInstance();
-                $stmt = $db->prepare('INSERT INTO users (name, email, password) 
-                                      VALUES (:name, :email, :password)');
-
-                $stmt->bindParam(':name', $user->name);
-                $stmt->bindParam(':email', $user->email);
-                $stmt->bindParam(':password', Hash::make($user->password));
-                $stmt->execute();
-            } catch (PDOException $exception) {
-                // Log the exception message
-                echo $exception->getMessage();
-
-            }
-        }
-
-        return $user;
     }
 
-    public function emailExists($email) {
-        try {
-            
-            $db = Database::getInstance();
-        
-            $stmt = $db->prepare('SELECT COUNT(*) FROM users WHERE email = :email LIMIT 1');
-
-            $stmt->execute([':email' => $this->email]);
-
-            $rowCount = $stmt->fetchColumn();
-            return $rowCount == 1;
-        } catch (PDException $exception) {
-
-            echo $exception->getMessage();
-            return false;
-        }
-    } 
-    
-    public function isValid()
+    public function index()
     {
-        $this->errors = [];
+        View::render('User/login');
+    }
 
-        //
-        // name
-        //
-        if ($this->name == '') {
-            $this->errors['name'] = 'Please enter a valid name';
-        }
+    public function signup()
+    {
+        View::render('User/signup');
+    }
 
-        //
-        // email 
-        //
-        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
-            $this->errors['email'] = 'Please enter a valid email address';
-        }
-
-        if ($this->emailExists($this->email)) {
-            $this->errors['email'] = 'That email is already registerd';
-        }
-
-        //
-        // password
-        //
-        if (strlen($this->password) < 5) {
-            $this->errors['password'] = 'Please enter at 5 characters for a password';
-        }
-        
-        return empty($this->errors);
+    public function create()
+    {
+        $user = UserModel::create($_POST);
+        View::render('User/signup_success');
     }  
 
-    public static function authenticate($email, $password)
-    {
-        $user = static::findByEmail($email);
-echo "User.authenticate" . var_dump($user) . "<br>";
-        if ($user !== null) {
-        
-            // Checked hashed password
-            if (Hash::check($password, $user->password)) {
-                return $user;
-            }
-        }
-    }
 
     public static function findByEmail($email) {
         
-        try { 
+            $db = UserModel::read($email);
         
-            $db = Database::getInstance();
-
-            $stmt = $db->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
-            $stmt->execute([':email' => $email]);
-
-            $user = $stmt->fetchObject('user');
-
-            if ($user !== false) {
-        
-                return $user;
-            } 
-        }   catch (PDOException $exception) {
-
-            echo $exception->getMessage();
-        }
     }
 
     public static function findByID($id)

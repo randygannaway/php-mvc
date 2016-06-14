@@ -1,4 +1,7 @@
 <div>
+
+    <a href="/users/signup-form">Sign Up</a>
+
     <h1>Add An Event</h1>
         <form action="/home/add" method="get">
             <input type="text" name="event"><br>

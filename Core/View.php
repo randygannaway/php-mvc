@@ -16,4 +16,11 @@ class View
             echo "View not found";
         }
     }
+
+
+    public static function redirect($url)
+    {
+        header('Location: ' . $url);
+        exit;
+    }       
 }

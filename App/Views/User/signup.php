@@ -4,11 +4,9 @@
  * Sign up new user
  */
 
-// Initialisation
-require_once('includes/init.php');
 
 // Require that user is not logged in to see this page
-Auth::getInstance()->requireGuest();
+//Auth::getInstance()->requireGuest();
 
 // Process the submitted form (this would go in a controller?)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $page_title = 'Sign Up';
-include('includes/header.php');
 
 ?>
 
@@ -37,7 +34,7 @@ include('includes/header.php');
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
-<form method="post">
+<form method="post" action="/users/create">
     <div>
         <label for="name">Name</label>
         <input id="name" name="name" value="<?php isset($user) ? htmlspecialchars($user->name) : ''; ?>" />
@@ -56,4 +53,3 @@ include('includes/header.php');
     <input type="submit" value="Sign Up" />
 </form>
 
-<?php include('includes/footer.php'); ?>

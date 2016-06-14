@@ -1,16 +1,18 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\UserModel;
+
 /*
  *  Authentication class
  */
-
-class Auth
+class Auths
 {
-    private static $_instance; 
 
-    private function __construct() {}
+    public function __construct() {}
 
-    private function __clone() {}
+    public function __clone() {}
 
     /*
      * Initialixation
@@ -32,11 +34,13 @@ class Auth
         return static::$_instance;
     }
 
-    public function login($email, $password, $remember_me)
+    public function login()
     {
-echo $email . $password . $remember_me . "<br>";
-        $user = User::authenticate($email, $password);
- echo "Auth.login" . var_dump($user) . "<br>";
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $user = $this->authenticate($email, $password);
+var_dump($user);
         if ($user !== NULL) {
             
             $this->_currentUser = $user;
@@ -55,12 +59,28 @@ echo $email . $password . $remember_me . "<br>";
                 }
             }
 
-            return true;
+            // return true;
+View::render('home', $user);
         }
-
+echo "NO USER";
         return false;
     }
 
+    public static function authenticate($email, $password)
+    {
+        $user = UserModel::read($email, 'email');
+
+var_dump($user);
+        if ($user !== null) {
+        
+            $hash = $user[0]['password'];
+var_dump($hash);
+            // Checked hashed password
+            if (password_verify($password, $hash)) {
+                return $user;
+            }
+        }
+    }
     public function getCurrentUser()
     {
         if ($this->_currentUser === null) {
@@ -135,4 +155,4 @@ echo $email . $password . $remember_me . "<br>";
 
         session_regenerate_id();
     }
-}   
+}
