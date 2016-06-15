@@ -9,7 +9,7 @@ class Homes
 {
     public function index()
     {
-        View::render("home");
+        View::render("Main/home");
     }
 
 

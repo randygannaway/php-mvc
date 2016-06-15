@@ -41,7 +41,7 @@ class Router
             $controller = $this->params['controller'];
             $controller = "App\Controllers\\$controller";
 
-            if (class_exists($controller)) {
+          if (class_exists($controller)) {
                 $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];

@@ -2,16 +2,17 @@
 
 namespace Core;
 
+use App\Config;
+
 class View
 {
     public static function render($view, $args = [])
     {
         extract($args, EXTR_SKIP);
-
-        $file = "../App/Views/$view" . ".php";
+        $file = dirname(__DIR__) . "/App/Views/$view" . ".php";
 
         if (is_readable($file)) {
-            include "../App/Views/layout.php";
+            include $file;
         } else {
             echo "View not found";
         }

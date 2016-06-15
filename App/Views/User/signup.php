@@ -1,29 +1,29 @@
 <?php
 
-/**
- * Sign up new user
- */
-
-
-// Require that user is not logged in to see this page
+// Require guest
 //Auth::getInstance()->requireGuest();
 
-// Process the submitted form (this would go in a controller?)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Get checked status of the "remember "me option
+$remember_me = isset($_POST['remember_me']);
 
-    $user = User::signup($_POST);
 
-    if (empty($user->errors)) {
-
-        // Redirect to succes page
-        header('Location: ' . '/signup_success.php');
-        exit;
+//    if (Auth::getInstance()->login($email, $_POST['password'], $remember_me)) {
+       
+    if ($_SESSION['invalid'] == true) {
+        $message = "That information does not match our recoreds.";
     }
-}
 
-$page_title = 'Sign Up';
-
+$title = 'Login';
+include(dirname(__DIR__) . "/layout.php");
 ?>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Sticky footer with fixed navbar</h1>
+  </div>
+  <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>
+  <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+
 
 <h1>Sign Up</h1>
 
@@ -52,4 +52,7 @@ $page_title = 'Sign Up';
 
     <input type="submit" value="Sign Up" />
 </form>
+</div>
 
+</div>
+<?php include(dirname(__DIR__) . "/footer.php");

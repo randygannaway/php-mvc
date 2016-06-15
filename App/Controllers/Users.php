@@ -25,7 +25,7 @@ class Users extends \Core\Controller
     public function create()
     {
         $user = UserModel::create($_POST);
-        View::render('User/signup_success');
+        View::render('Main/profile');
     }  
 
 

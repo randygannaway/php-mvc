@@ -40,7 +40,7 @@ class Auths
                 }
             }
 
-            View::render('Main/profile', $user[0]);
+            View::render('profile', $user[0]);
 
         } else {
             

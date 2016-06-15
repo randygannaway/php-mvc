@@ -15,7 +15,7 @@ $router->add('home', ['controller' => 'Homes', 'action' => 'index']);
 $router->add('home/add', ['controller' => 'Homes', 'action' => 'add']);
 $router->add('login', ['controller' => 'Users', 'action' => 'index']);
 $router->add('auth/login', ['controller' => 'Auths', 'action' => 'login']);
-$router->add('users/signup-form', ['controller' => 'Users', 'action' => 'signup']);
+$router->add('users/signup', ['controller' => 'Users', 'action' => 'signup']);
 $router->add('users/create', ['controller' => 'Users', 'action' => 'create']);
 $router->add('profile', ['controller' => 'Profiles', 'action' => 'index']);
 
