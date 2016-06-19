@@ -12,13 +12,9 @@ class Homes
         View::render("Main/home");
     }
 
-
-    public function add()
+    public function contact()
     {
-
-        $stars = HomeModel::getStars();
-
-        View::render("add", [$_GET, $stars[0]]);
+        View::render('Main/contact');
     }
 
 }

@@ -1,58 +1,45 @@
 <?php
 
-// Require guest
-//Auth::getInstance()->requireGuest();
-
-// Get checked status of the "remember "me option
-$remember_me = isset($_POST['remember_me']);
-
-
-//    if (Auth::getInstance()->login($email, $_POST['password'], $remember_me)) {
-       
-    if ($_SESSION['invalid'] == true) {
-        $message = "That information does not match our recoreds.";
-    }
-
-$title = 'Login';
+$title = 'Sign Up';
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
 <div class="container">
-  <div class="page-header">
-    <h1>Sticky footer with fixed navbar</h1>
-  </div>
-  <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>
-  <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+    <div class="row">
+        <div clas="col-lg-8 col-lg-offset-2">
+            <h1>Please Sign up</h1>
+            <?php if (isset($_SESSION['user'])): ?>
+                <h2>You are already logged in.</h2>
+            <?php elseif ($_SESSION['invalid'] == true): ?>
+                <h2>That information doesn't match our records.</h2>'
+            <?php endif; ?>
+        
+            <div>
+                <form class="form-signin" action="/users/create" method="post">
 
+                    <h2 class="form-signin-heading">Sign Up</h2>
 
-<h1>Sign Up</h1>
+                    <label for="inputEmail" class="sr-only">Name</label>
+                    <input type="name" id="name" name="name" id="inputEmail" class="form-control" 
+                            placeholder="Email address" required autofocus>
+                    
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" name="email" id="inputEmail" class="form-control" 
+                        placeholder="Email address" required>
 
-<?php if (isset($user)): ?>
-    <ul>
-        <?php foreach ($user->errors as $error): ?>
-        <li><?php echo $error; ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
-<form method="post" action="/users/create">
-    <div>
-        <label for="name">Name</label>
-        <input id="name" name="name" value="<?php isset($user) ? htmlspecialchars($user->name) : ''; ?>" />
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" 
+                        placeholder="Password" required>
+                    
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">Sign Up</button>
+
+                    <p class="lead"></p>
+                    <p>If you're not registered <a href="users/signup">go sign up!</a></p>
+
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <label for="email">Email address</label>
-        <input id="name" name="email" required="required" type="email"  value="<?php isset($user) ? htmlspecialchars($user->email) : ''; ?>" />
-    </div>
-
-    <div>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" required="required" pattern=".{5,}"/>
-    </div>
-
-    <input type="submit" value="Sign Up" />
-</form>
 </div>
-
-</div>
+    
 <?php include(dirname(__DIR__) . "/footer.php");

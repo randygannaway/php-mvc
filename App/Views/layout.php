@@ -13,14 +13,14 @@
     <title><?php echo $title; ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://daneden.github.io/animate.css/animate.min.css" rel="stylesheet">
+    
     <!-- Custom styles for this template -->
-    <link href="../css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="/css/sidebar.css" rel="stylesheet">
+    <!-- <link href="/css/signin.css" rel="stylesheet"> -->
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,40 +31,47 @@
   </head>
 
   <body>
+    <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/home">
+                       Las Esposas
+                    </a>
+                </li>
+                <li>
+                    <a href="/home"><i class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="/profile"><i class="fa fa-fw fa-folder"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="/contact"><i class="fa fa-fw fa-file-o"></i> Contact</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Login/Signup <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <!--<li class="dropdown-header">Login/Signup</li>-->
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/users/signup">Sign Up</a></li>
+                    <li><a href="/auth/logout">Log Out</a></li>
+                  </ul>
+                </li>
+                <!--<li>
+                    <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
+                </li>-->
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
           </button>
-          <a class="navbar-brand" href="#">Las Esposas</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <!-- Begin page content -->
-
+        
+    <!-- Page content-->
+    

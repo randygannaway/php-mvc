@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Core\Hash;
 use PDO;
 
 /*

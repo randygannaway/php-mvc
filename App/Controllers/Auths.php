@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\AuthModel;
 use Core\View;
 
 /*
@@ -14,6 +14,16 @@ class Auths
     public function __construct() {}
 
     public function __clone() {}
+
+    public function index()
+    {
+        if (isset($_SESSION['user'])) {
+            
+            $_SESSION['message'] = 'You are already logged in.';
+        }
+            View::render('User/login');
+
+    }
 
     public function login()
     {
@@ -32,7 +42,7 @@ class Auths
         
                 $expiry = time() + 60 * 60 * 24 * 30; // set expiry to 30 days from now
 
-                $token = $user->rememberLogin($expiry);
+                $token = $this->rememberLogin($expiry);
 
                 if ($token !== false) {
                     
@@ -40,6 +50,7 @@ class Auths
                 }
             }
 
+            $_SESSION['user'] = $user[0];
             View::render('Main/profile', $user[0]);
 
         } else {
@@ -53,7 +64,7 @@ class Auths
 
     public static function authenticate($email, $password)
     {
-        $user = UserModel::read($email, 'email');
+        $user = AuthModel::read($email, 'email');
 
         if ($user !== null) {
         
@@ -81,11 +92,50 @@ class Auths
         return $this->_currentUser;
     }
 
-    public function isLoggedIn()
+    // Check if the user is already logged in, stored in session
+//     public function isLoggedIn()
+//     {
+//         if (isset($_SESSION['user'])) {
+//             return true;
+//         } 
+// 
+//         return false;
+//     }
+
+        // 
+    private function _loginUser($user)
     {
-        return $this->getCurrentUser() !== null;
+        $_SESSION['user_id'] = $user[0]['id'];
+        session_regenerate_id();
+    }
+    
+    // Login from remember_me cookie 
+    public function _loginFromCookie() {
+    
+        if (isset($_COOKIE['remember_me'])){ 
+
+            $user = AuthModel::getFromCookie(sha1($_COOKIE['remember_token']));
+
+            if ($user !== null) {
+
+                $this->_loginUser($user);
+                return $user;
+            }
+        }
     }
 
+    private function rememberLogin($expiry)
+    {
+        
+        // Generate unique token
+        $token = uniqid($this->email, true);
+        $user_id = $_SESSION(['id']);
+        
+        $token = AuthModel::setCookieToken($token, $user_id, $expiry);
+        
+        return $token;
+    }
+    
     public function logout()
     {
         if (isset($_COOKIE['remember_token'])) {
@@ -98,45 +148,17 @@ class Auths
 
         $_SESSION = array();
         session_destroy();
+
+        View::redirect('/home');
     }
-
-    public function requireLogin()
-    {
-        if ( ! $this->isLoggedIn()) {
-            
-            $url = $_SERVER['REQUEST_URI'];
-            if ( ! empty($url)) {
-                $_SESSION['return_to'] = $url;
-            }
-
-            Util::redirect('/login.php');
-        }
-    }
-
-    public function requireGuest()
-    {
-        if ($this->isLoggedIn()) {
-            Util::redirect('/index.php');
-        }
-    }
-
-    public function _loginFromCookie() {
     
-        if (isset($_COOKIE['remember_me'])){ 
+    public function forgetLogin($token)
+    {
+        if ($token !== null) {
 
-            $user = User::findByRememberToken(sha1($_COOKIE['remember_token']));
 
-            if ($user !== null) {
-
-                $this->_loginUser($user);
-                return $user;
-            }
         }
     }
 
-    private function _loginUser($user)
-    {
-        $_SESSION['user_id'] = $user[0]['id'];
-        session_regenerate_id();
-    }
+    
 }

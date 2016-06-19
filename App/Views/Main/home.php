@@ -4,21 +4,25 @@ $title="Home";
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
+        <!-- Page Content -->
+
 <div class="container">
-  <div class="page-header">
-    <h1>Sticky footer with fixed navbar</h1>
-  </div>
-  <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>
-  <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h1 class="page-header">Welcome to Las Esposas</h1>  
+            <p class="lead">This site serves one purpose, it's a timecard for your relationship.</p>
+            
+            <p>Balancing contributions to family management chores can be difficult. <i>Las Esposas</i> helps track what you do so that when its time for a break you and your partner know who has earned it!</p>
+            
+            <blockquote>
+                <p>"It's amazing what you can accomplish if you do not care who gets the credit."</p><br />
+                <h4> -Harry Truman </h4>
+            </blockquote>
+            
+            <a class="twitter-follow-button" href="https://twitter.com/randy_gannaway"></a>
 
-
-    <a href="/users/signup-form">Sign Up</a>
-
-    <h1>Add An Event</h1>
-        <form action="/home/add" method="get">
-            <input type="text" name="event"><br>
-            <input type="submit" action="submit" value="Ask Her">
-        </form>
+        </div>
+    </div>
 </div>
-
-<?php include(dirname(__DIR__) . "/footer.php"); ?>
+            
+<?php include(dirname(__DIR__)) . "/footer.php"; ?>
