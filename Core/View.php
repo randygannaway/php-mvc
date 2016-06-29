@@ -3,11 +3,13 @@
 namespace Core;
 
 use App\Config;
+use App\Interfaces\ViewInterface;
 
-class View
+
+class View implements ViewInterface
 {
 
-    public static function render($view, $args = [])
+    public function render($view, $args = [])
     {
     
     
@@ -23,7 +25,7 @@ class View
     }
 
 
-    public static function redirect($url)
+    public function redirect($url)
     {
         header('Location: ' . $url);
         exit;

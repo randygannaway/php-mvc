@@ -22,4 +22,5 @@ $router->add('profile', ['controller' => 'Profiles', 'action' => 'index']);
 $router->add('auth/logout', ['controller' => 'Auths', 'action' => 'logout']);
 $router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
 
-$router->dispatch($_SERVER['QUERY_STRING']);
+$viewer = new Core\View();
+$router->dispatch($viewer, $_SERVER['QUERY_STRING']);

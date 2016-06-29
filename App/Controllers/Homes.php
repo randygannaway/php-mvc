@@ -4,12 +4,18 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\HomeModel;
+use App\Interfaces\ViewInterface;
 
 class Homes
 {
+    public function __construct(ViewInterface $viewInterface)
+    {
+        $this->viewInterface = $viewInterface;
+    }
+
     public function index()
     {
-        View::render("Main/home");
+        $this->viewInterface->render("Main/home");
     }
 
     public function contact()

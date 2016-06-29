@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\Interfaces\ViewInterface;
 use Core\Auth;
 
 class Router
@@ -10,7 +11,7 @@ class Router
     protected $routes = [];
 
     protected $params = [];
-
+    
     public function add($route, $params = []) 
     {
         $this->routes[$route] = $params;
@@ -33,7 +34,7 @@ class Router
         return false;
     }
 
-    public function dispatch($url) 
+    public function dispatch($viewInterface, $url) 
     {
         $url = $this->removeQueryStringVariables($url);
 
@@ -42,7 +43,7 @@ class Router
             $controller = "App\Controllers\\$controller";
 
           if (class_exists($controller)) {
-                $controller_object = new $controller($this->params);
+                $controller_object = new $controller($viewInterface, $this->params);
 
                 $action = $this->params['action'];
 
