@@ -4,17 +4,25 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\HomeModel;
+use App\Interfaces\ViewInterface;
 
 class Profiles extends \Core\Controller
 {
+    protected $viewInterface;
+
+    public function __construct(ViewInterface $viewInterface)
+    {
+        $this->viewInterface = $viewInterface;
+    }
+
     public function index()
     {
         $stars = HomeModel::getStars();
     
         if (isset($_SESSION['user'])) {
-            View::render('Main/profile', $stars/* );
+            $this->viewInterface->render('Main/profile', $stars );
         } else {
-            View::redirect('auth/login');
+            $this->viewInterface->redirect('auth/login');
         }
     }
     

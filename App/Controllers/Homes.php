@@ -8,6 +8,8 @@ use App\Interfaces\ViewInterface;
 
 class Homes
 {
+    protected $viewInterface;
+    
     public function __construct(ViewInterface $viewInterface)
     {
         $this->viewInterface = $viewInterface;
@@ -20,7 +22,7 @@ class Homes
 
     public function contact()
     {
-        View::render('Main/contact');
+        $this->viewInterface->render('Main/contact');
     }
 
 }
