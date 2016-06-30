@@ -2,13 +2,14 @@
 
 namespace Core;
 
+use App\Interfaces\DatabaseInterface;
 use PDO;
 use App\Config;
 
-abstract class Model
+class Database implements DatabaseInterface
 {
  
-    public static function getDb() {
+    public function getDb() {
     
         static $db = null;
 

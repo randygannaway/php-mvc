@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use PDO;
+use Core\ModelDatabase;
 
 /*
  * Authentication Model
  */ 
-class AuthModel extends \Core\Model
+class AuthModel extends ModelDatabase
 {
     
     public $errors;

@@ -34,7 +34,7 @@ class Router
         return false;
     }
 
-    public function dispatch($viewInterface, $url) 
+    public function dispatch($viewInterface, $url)
     {
         $url = $this->removeQueryStringVariables($url);
 
@@ -43,7 +43,12 @@ class Router
             $controller = "App\Controllers\\$controller";
 
           if (class_exists($controller)) {
-                $controller_object = new $controller($viewInterface, $this->params);
+                if (isset($this->params['dependency'])){
+                    $dependency = $this->params['dependency'];
+                    $controller_object = new $controller($viewInterface, $dependency, $this->params);
+                } else {
+                    $controller_object = new $controller($viewInterface, $this->params);
+                }
 
                 $action = $this->params['action'];
 
