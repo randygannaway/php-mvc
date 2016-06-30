@@ -2,21 +2,30 @@
 
 namespace App\Models;
 
+use App\Interfaces\ModelInterface;
 use PDO;
-use Core\ModelDatabase;
+use Core\Database;
 
 /*
  * Authentication Model
  */ 
-class AuthModel extends ModelDatabase
+class AuthModel implements ModelInterface
 {
     
     public $errors;
+
+    protected $databaseInterface;
+
+    public function __construct(DatabaseInterface $databaseInterface)
+    {
+        $this->databaseInterface = $databaseInterface;
+    }
     
-    public static function create($userData)
+    public static function create()
     {
         $db = static::getDb();
 
+        $db = $this->databaseInterface->getDb();
         $name = $userData['name'];
         $email = $userData['email'];
         $password = $userData['password'];
@@ -82,27 +91,7 @@ class AuthModel extends ModelDatabase
         }
     }
     
-    public static function setCookieToken($token, $user_id, $expiry)
-    {
-        try {
-                
-                $db = static::getDb();
 
-                $stmt = $db->prepare('INSERT INTO remembered_logins (token, user_id, expires_at) values (:token, :user_id, :expires_at)');
-                $stmt->bindParam(':token', sha1($token));
-                $stmt->bindParam(':user_id', $this->id, PDO::PARAM_INT);
-                $stmt->bindParam(':expires_at', date('Y-m-d H:i:s', $expiry));
-                $stmt->execute();
-
-                if ($stmt->rowCount() == 1) {
-                
-                    return $token;
-                }
-        
-            } catch (PDOException $exception) {
-                echo $exception->getMessage();
-            }
-        }
             
         public static function delete($token)
         {

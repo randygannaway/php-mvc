@@ -9,7 +9,7 @@ namespace App\Interfaces;
 
 interface ViewInterface
 {
-    public function render($view, $args);
-    
+    public function render($view, $args = []);
+
     public function redirect($url);
 }

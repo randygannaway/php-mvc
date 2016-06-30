@@ -2,11 +2,11 @@
 
 namespace Core;
 
-use App\Interfaces\DatabaseInterface;
+use App\Interfaces\DatabasingInterface;
 use PDO;
 use App\Config;
 
-class Database implements DatabaseInterface
+class Database implements DatabasingInterface
 {
  
     public function getDb() {

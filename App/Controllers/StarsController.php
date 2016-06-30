@@ -7,9 +7,7 @@ namespace App\Controllers;
 use App\Interfaces\EarnedByUserInterface;
 use App\Interfaces\ModelInterface;
 use App\Interfaces\ViewInterface;
-use App\Models\EarnedByUserModel;
 use Core\Controller;
-use App\Models\StarModel;
 
 class StarsController extends Controller implements EarnedByUserInterface
 {
@@ -23,23 +21,18 @@ class StarsController extends Controller implements EarnedByUserInterface
         $this->modelInterface = $modelInterface;
     }
 
-    public function create()
+    public function count()
+    {
+        // Get stars for a user
+        $stars = $this->modelInterface->read($_SESSION['user_id']);
+    }
+
+    public function earn()
     {
         // Add stars to a user   
     }
-    
-    public function read()
-    {
-        // Get stars for a user
-        $stars = $this->modelInterface->read();
-    }
-    
-    public function update()
-    {
-        // Spend stars for permission to do something
-    }
-    
-    public function delete()
+
+    public function spend()
     {
         
     }

@@ -9,7 +9,10 @@ namespace App\Interfaces;
 
 interface ModelInterface
 {
-    public function create();
+    /*
+     * @var $userData = array();
+     */
+    public function create($userData);
     
     public function read();
     

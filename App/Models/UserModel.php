@@ -1,18 +1,18 @@
 <?php
-
 namespace App\Models;
 
 use PDO;
+use App\Interfaces\ModelInterface;
 
 /*
  * User Model
  */ 
-class UserModel extends \Core\Model
+class UserModel implements ModelInterface
 {
     
     public $errors;
     
-    public static function create($userData)
+    public function create($data)
     {
         $db = static::getDb();
 
@@ -38,12 +38,12 @@ class UserModel extends \Core\Model
         }
     }
 
-    public static function read($data, $field)
+    public function read($data)
     {
         try {
             
             $db = static::getDb(); 
-            $stmt = $db->prepare("SELECT * FROM users WHERE $field = :data LIMIT 1");
+            $stmt = $db->prepare("SELECT * FROM users WHERE email = :data LIMIT 1");
             $stmt->bindParam(':data', $data);
             $stmt->execute();
             $user = $stmt->fetchAll();
@@ -57,6 +57,16 @@ class UserModel extends \Core\Model
 
             echo $exception->getMessage();
         }
+    }
+
+    public function update($data)
+    {
+
+    }
+
+    public function delete($data)
+    {
+        
     }
 
 }
