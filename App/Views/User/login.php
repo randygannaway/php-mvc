@@ -2,6 +2,7 @@
 
 // Get checked status of the "remember "me option
 $remember_me = isset($_POST['remember_me']);
+// Detect cookie here and revert to LoginCookieController
 
 $title = 'Login';
 include(dirname(__DIR__) . "/layout.php");

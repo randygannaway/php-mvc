@@ -4,35 +4,40 @@
  */
 namespace App\Controllers;
 
-use App\Interfaces\EarnedByUserInterface;
-use App\Interfaces\ModelInterface;
-use App\Interfaces\ViewInterface;
+use App\Interfaces\Earning;
+use App\Interfaces\Modelling;
+use App\Interfaces\Viewing;
 use Core\Controller;
 
-class StarsController extends Controller implements EarnedByUserInterface
+class StarsController extends Controller implements Earning
 {
 
-    protected $viewInterface;
+    protected $viewing;
     protected $modelInterface;
 
-    public function __construct(ViewInterface $viewInterface, ModelInterface $modelInterface)
+    public function __construct(Viewing $viewing, Modelling $modelInterface)
     {
-        $this->viewInterface = $viewInterface;
+        $this->Viewing = $viewing;
         $this->modelInterface = $modelInterface;
     }
 
-    public function count()
+    public function create()
     {
         // Get stars for a user
         $stars = $this->modelInterface->read($_SESSION['user_id']);
     }
 
-    public function earn()
+    public function read()
     {
         // Add stars to a user   
     }
 
-    public function spend()
+    public function update()
+    {
+        
+    }
+
+    public function delete ()
     {
         
     }

@@ -2,17 +2,18 @@
 
 namespace Core;
 
-use App\Config;
-use App\Interfaces\ViewInterface;
+use App\Interfaces\Viewing;
 
 
-class View implements ViewInterface
+class View implements Viewing
 {
 
+    /**
+     * @param $view
+     * @param array $args
+     */
     public function render($view, $args = [])
     {
-    
-    
         extract($args, EXTR_SKIP);
         
         $file = dirname(__DIR__) . "/App/Views/$view" . ".php";
@@ -24,7 +25,9 @@ class View implements ViewInterface
         }
     }
 
-
+    /**
+     * @param $url
+     */
     public function redirect($url)
     {
         header('Location: ' . $url);

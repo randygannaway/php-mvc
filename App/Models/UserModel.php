@@ -1,28 +1,34 @@
 <?php
 namespace App\Models;
 
-use PDO;
-use App\Interfaces\ModelInterface;
+use App\Interfaces\Modelling;
+use App\Interfaces\Databasing;
 
-/*
+/**
  * User Model
- */ 
-class UserModel implements ModelInterface
+ **/
+class UserModel implements Modelling
 {
-    
-    public $errors;
-    
+    public $databasing;
+
+    public function __construct(Databasing $databasing)
+    {
+        $this->databasing = $databasing;
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function create($data)
     {
-        $db = static::getDb();
+        $db = $this->databasing->getDb();
 
-        $name = $userData['name'];
-        $email = $userData['email'];
-        $password = $userData['password'];
+        $name = $data['name'];
+        $email = $data['email'];
+        $password = $data['password'];
 
         try {
-            
-
             $stmt = $db->prepare('INSERT INTO users (name, email, password) 
                                   VALUES (:name, :email, :password)');
 
@@ -30,19 +36,21 @@ class UserModel implements ModelInterface
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
             $stmt->execute();
+            return true;
 
         } catch (PDOException $exception) {
             // Log the exception message
             echo $exception->getMessage();
 
         }
+        return false;
     }
 
     public function read($data)
     {
         try {
-            
-            $db = static::getDb(); 
+            $db = $this->databasing->getDb();
+
             $stmt = $db->prepare("SELECT * FROM users WHERE email = :data LIMIT 1");
             $stmt->bindParam(':data', $data);
             $stmt->execute();
@@ -53,7 +61,7 @@ class UserModel implements ModelInterface
                 return $user; 
             }
 
-        } catch (PDException $exception) {
+        } catch (PDOException $exception) {
 
             echo $exception->getMessage();
         }

@@ -1,33 +1,50 @@
 <?php
-
+/**
+ * 
+ */
 namespace App\Controllers;
 
-use App\Interfaces\EarnedByUserInterface;
-use App\Interfaces\ModelInterface;
-use App\Interfaces\ViewInterface;
-use App\Interfaces\UserInterface;
-use App\Models\UserModel;
-use Core\Controller;
+use App\Interfaces\Modelling;
+use App\Interfaces\Viewing;
+use App\Interfaces\UserEditing;
 use App\Models\UserModel;
 
-class UserController implements UserInterface
+class UserController implements UserEditing
 {
-    protected $viewInterface;
-    protected $modelInterface;
+    protected $viewing;
+    protected $model;
 
-    public function __construct(ViewInterface $viewInterface, ModelInterface $modelInterface)
+    public function __construct(Modelling $model)
     {
-        $this->viewInterface = $viewInterface;
-        $this->modelInterface = $modelInterface;
+        $this->model = $model;
     }
 
     public function index()
     {
     }
 
-    public function read($email, $password)
+    /**
+     * @param array $userData
+     * @return bool
+     */
+    public function create($userData)
     {
-        $user = $this->modelInterface->read($email, 'email');
+        $user = $this->model->create($userData);
+        if ($user !== null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param $email
+     * @param $password
+     * @return mixed
+     */
+    public function read($userInfo)
+    {
+        $user = $this->model->read($email);
 
         if ($user !== null) {
 
@@ -40,16 +57,32 @@ class UserController implements UserInterface
             }
         }
     }
-
-    public function signup()
+    
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public function update($user_id)
     {
+        if ($this->_currentUser === null) {
+
+            if (isset($_SESSION['user_id'])) {
+
+                $this->_currentUser = User::findByID($_SESSION['user_id']);
+            } else {
+                $this->_currentUser = $this->_loginFromCookie();
+            }
+        }
+
+        return $this->_currentUser;
     }
 
-    public function create()
+    /**
+     * @param $user_id
+     */
+    public function delete($user_id)
     {
-        $user = UserModel::create($_POST);
-        $this->viewInterface->render('Main/profile');
-    }  
-
+        
+    }
 }
 

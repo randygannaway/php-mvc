@@ -1,37 +1,37 @@
 <?php
-
+/**
+ *
+ */
 namespace App\Controllers;
 
-use App\Interfaces\LoginInterface;
-use App\Interfaces\ViewInterface;
-use App\Interfaces\UserInterface;
-use App\Models\AuthModel;
+use App\Interfaces\Viewing;
+use App\Interfaces\UserEditing;
+use App\Interfaces\Cookieing;
 use Core\View;
+use Core\Login;
 
-/*
- *  Authentication class
- */
-class LoginController extends Auth implements LoginInterface
+class LoginController extends Login
 {
-    protected $rememberLoginInterface;
-    protected $viewInterface;
-    protected $userInterface;
+    protected $cookieing;
+    protected $viewing;
+    protected $userEditing;
     protected $token;
     
-    public function __construct(ViewInterface $viewInterface, RememberLoginInterface $rememberLoginInterface, UserInterface $userInterface)
+    public function __construct(Viewing $viewing, UserEditing $userEditing, Cookieing $cookieing)
     {
-        $this->viewInterface = $viewInterface;
-        $this->rememberLoginInterface = $rememberLoginInterface;
-        $this->userInterface = $userInterface;
+        $this->viewing = $viewing;
+        $this->userEditing = $userEditing;
+        $this->cookieing = $cookieing;
     }
     
     public function index()
     {
+        
         if (isset($_SESSION['user'])) {
             
             $_SESSION['message'] = 'You are already logged in.';
         }
-            $this->viewInterface->render('User/login');
+            $this->viewing->render('User/login');
 
     }
 
@@ -40,7 +40,7 @@ class LoginController extends Auth implements LoginInterface
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $this->userInterface->read($email, $password);
+        $user = $this->userEditing->read($email, $password);
 
         if ($user !== NULL) {
 
@@ -48,47 +48,25 @@ class LoginController extends Auth implements LoginInterface
             session_regenerate_id();
 
             if ($remember_me) {
-                
-                
-                $this->rememberLoginInterface->create();
+
+                $this->cookieing->createCookie();
             }
 
-            $this->viewInterface->render('Main/profile', $user[0]);
+            $this->viewing->render('Main/profile', $user[0]);
 
         } else {
             
             $_SESSION['invalid'] = true;
 
-            View::redirect('/login');    
-
+            $this->viewing->redirect('/login');
         }        
     }
 
-
-    public function getCurrentUser()
-    {
-        if ($this->_currentUser === null) {
-            
-            if (isset($_SESSION['user_id'])) {
-            
-                $this->_currentUser = User::findByID($_SESSION['user_id']);
-            } else {
-                $this->_currentUser = $this->_loginFromCookie();
-            }
-        }
-
-        return $this->_currentUser;
-    }
-    
-
-
-
-    
     public function logout()
     {
         if (isset($_COOKIE['remember_token'])) {
 
-            $this->rememberLoginInterface->delete()->forgetLogin(sha1($_COOKIE['remember_token']));
+            $this->cookieing->deleteCookie();
 
             setcookie('remember_token', '', time() - 3600);
     
@@ -97,16 +75,7 @@ class LoginController extends Auth implements LoginInterface
         $_SESSION = array();
         session_destroy();
 
-        View::redirect('/home');
-    }
-    
-    public function forgetLogin($token)
-    {
-        if ($token !== null) {
-
-
-        }
+        $this->viewing->redirect('/home');
     }
 
-    
 }

@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use App\Interfaces\ViewInterface;
+use App\Interfaces\Viewing;
 use Core\Auth;
 
 class Router
@@ -17,11 +17,6 @@ class Router
         $this->routes[$route] = $params;
     }
 
-    public function getRoutes()
-    {
-        return $this->routes;
-    }
-
     public function match($url)
     {
         foreach ($this->routes as $route => $params) {
@@ -34,23 +29,30 @@ class Router
         return false;
     }
 
-    public function dispatch($viewInterface, $url)
+    public function dispatch($viewing, $url)
     {
         $url = $this->removeQueryStringVariables($url);
+
 
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = "App\Controllers\\$controller";
 
           if (class_exists($controller)) {
-                if (isset($this->params['dependency'])){
-                    $dependency = $this->params['dependency'];
-                    $controller_object = new $controller($viewInterface, $dependency, $this->params);
-                } else {
-                    $controller_object = new $controller($viewInterface, $this->params);
-                }
+              if (isset($this->params['dependency2'])){
+                  $dependency2 = $this->params['dependency2'];
+                  $dependency1 = $this->params['dependency1'];
+                  $controller_object = new $controller($viewing, $dependency1, $dependency2, $this->params);
 
-                $action = $this->params['action'];
+              } elseif (isset($this->params['dependency1'])){
+                  $dependency1 = $this->params['dependency1'];
+                  $controller_object = new $controller($viewing, $dependency1, $this->params);
+
+              } else {
+                  $controller_object = new $controller($viewing, $this->params);
+              }
+
+              $action = $this->params['action'];
 
                 if (is_callable([$controller_object, $action])) {
                     $controller_object->$action();

@@ -4,7 +4,7 @@
  */
 namespace App\Interfaces;
 
-interface Cookiable
+interface Cookieing
 {
     public function createCookie();
 

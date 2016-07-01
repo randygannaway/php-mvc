@@ -12,7 +12,7 @@ namespace App\Interfaces;
  * @package App\Interfaces
  * Core\Model implements this interface, low level models extend from Core\Model
  */
-interface DatabaseInterface
+interface Databasing
 {
     public function getDb();
 }

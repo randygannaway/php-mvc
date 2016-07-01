@@ -7,7 +7,7 @@
  */
 namespace Core;
 
-abstract class Auth
+abstract class Login
 {
     abstract public function login();
 

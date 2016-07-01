@@ -13,13 +13,13 @@
     <title><?php echo $title; ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://daneden.github.io/animate.css/animate.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="/css/sidebar.css" rel="stylesheet">
     <!-- <link href="/css/signin.css" rel="stylesheet"> -->
 
 
@@ -38,26 +38,26 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="home">
+                    <a href="/home">
                        Las Esposas
                     </a>
                 </li>
                 <li>
-                    <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="/home"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
                 <li>
-                    <a href="profile"><i class="fa fa-fw fa-folder"></i> Profile</a>
+                    <a href="/profile"><i class="fa fa-fw fa-folder"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="contact"><i class="fa fa-fw fa-file-o"></i> Contact</a>
+                    <a href="/contact"><i class="fa fa-fw fa-file-o"></i> Contact</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Login/Signup <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <!--<li class="dropdown-header">Login/Signup</li>-->
-                    <li><a href="login">Login</a></li>
-                    <li><a href="users/signup">Sign Up</a></li>
-                    <li><a href="auth/logout">Log Out</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/users/signup">Sign Up</a></li>
+                    <li><a href="/auth/logout">Log Out</a></li>
                   </ul>
                 </li>
                 <!--<li>

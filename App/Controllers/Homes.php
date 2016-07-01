@@ -4,25 +4,25 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\HomeModel;
-use App\Interfaces\ViewInterface;
+use App\Interfaces\Viewing;
 
 class Homes
 {
-    protected $viewInterface;
+    protected $viewing;
     
-    public function __construct(ViewInterface $viewInterface)
+    public function __construct(Viewing $viewing)
     {
-        $this->viewInterface = $viewInterface;
+        $this->Viewing = $viewing;
     }
 
     public function index()
     {
-        $this->viewInterface->render("Main/home");
+        $this->Viewing->render("Main/home");
     }
 
     public function contact()
     {
-        $this->viewInterface->render('Main/contact');
+        $this->Viewing->render('Main/contact');
     }
 
 }

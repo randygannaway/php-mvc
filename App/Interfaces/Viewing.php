@@ -7,7 +7,7 @@
  */
 namespace App\Interfaces;
 
-interface ViewInterface
+interface Viewing
 {
     public function render($view, $args = []);
 

@@ -5,28 +5,28 @@
 namespace App\Models;
 
 use PDO;
-use App\Interfaces\ModelInterface;
+use App\Interfaces\Modelling;
 
-class RememberModel implements ModelInterface
+class LoginCookieModel implements Modelling
 {
-    protected $userData;
+    protected $data;
     
-    public function create($userData)
+    public function create($data)
     {
-        $this->userData = $userData;
+        $this->userData = $data;
 
         try {
 
             $db = static::getDb();
 
             $stmt = $db->prepare('INSERT INTO remembered_logins (token, user_id, expires_at) values (:token, :user_id, :expires_at)');
-            $stmt->bindParam(':token', sha1($userData['token']));
-            $stmt->bindParam(':user_id', $userData['id'], PDO::PARAM_INT);
-            $stmt->bindParam(':expires_at', date('Y-m-d H:i:s', $userData['expiry']));
+            $stmt->bindParam(':token', sha1($data['token']));
+            $stmt->bindParam(':user_id', $data['id'], PDO::PARAM_INT);
+            $stmt->bindParam(':expires_at', date('Y-m-d H:i:s', $data['expiry']));
             $stmt->execute();
 
             if ($stmt->rowCount() == 1) {
-                setcookie('remember_token', $userData['token'], $userData['expiry']);
+                setcookie('remember_token', $data['token'], $data['expiry']);
                 return true;
             } else {
                 return false;
@@ -56,5 +56,15 @@ class RememberModel implements ModelInterface
 
             echo $exception->getMessage();
         }
+    }
+
+    public function update($data)
+    {
+        
+    }
+
+    public function delete($data)
+    {
+        
     }
 }

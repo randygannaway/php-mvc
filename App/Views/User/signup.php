@@ -6,7 +6,7 @@ include(dirname(__DIR__) . "/layout.php");
 
 <div class="container">
     <div class="row">
-        <div clas="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-8 col-lg-offset-2">
             <h1>Please Sign up</h1>
             <?php if (isset($_SESSION['user'])): ?>
                 <h2>You are already logged in.</h2>
@@ -34,8 +34,8 @@ include(dirname(__DIR__) . "/layout.php");
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">Sign Up</button>
 
                     <p class="lead"></p>
-                    <p>If you're not registered <a href="users/signup">go sign up!</a></p>
-
+                    <p>If you're not registered <a href="/users/signup">go sign up!</a></p>
+<?php echo $_SERVER['SERVER_NAME']; ?>
                 </form>
             </div>
         </div>

@@ -7,15 +7,15 @@
  */
 namespace App\Controllers;
 
-use App\Interfaces\Cookiable;
-use App\Interfaces\ModelInterface;
+use App\Interfaces\Cookieing;
+use App\Interfaces\Modelling;
 use Core\Login;
 
 class LoginCookieController extends Login implements Cookieing
 {
     protected $modelInterface;
 
-    public function __construct(ModelInterface $modelInterface)
+    public function __construct(Modelling $modelInterface)
     {
         $this->modelInterface = $modelInterface;
     }
@@ -25,11 +25,11 @@ class LoginCookieController extends Login implements Cookieing
      */
     public function createCookie()
     {
-]       $userData['token'] = uniqid($_SESSION['email'], true);
-        $userData['expiry'] = time() + 60 * 60 * 24 * 30; // set expiry to 30 days from now
-        $userData['id'] = $_SESSION(['id']);
+        $data['token'] = uniqid($_SESSION['email'], true);
+        $data['expiry'] = time() + 60 * 60 * 24 * 30; // set expiry to 30 days from now
+        $data['id'] = $_SESSION(['id']);
         
-        $this->modelInterface->create($userData);
+        $this->modelInterface->create($data);
         
     }
 
@@ -55,7 +55,7 @@ class LoginCookieController extends Login implements Cookieing
         }
     }
 
-    public function logout($token)
+    public function logout()
     {
         try {
 
@@ -69,5 +69,6 @@ class LoginCookieController extends Login implements Cookieing
             echo ($exception->getMessage());
         }
     }
+//->forgetLogin(sha1($_COOKIE['remember_token']))
 
 }

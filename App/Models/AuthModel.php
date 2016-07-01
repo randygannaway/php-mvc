@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Interfaces\ModelInterface;
+use App\Interfaces\Modelling;
 use PDO;
 use Core\Database;
 
 /*
  * Authentication Model
  */ 
-class AuthModel implements ModelInterface
+class AuthModel implements Modelling
 {
     
     public $errors;
@@ -26,9 +26,9 @@ class AuthModel implements ModelInterface
         $db = static::getDb();
 
         $db = $this->databaseInterface->getDb();
-        $name = $userData['name'];
-        $email = $userData['email'];
-        $password = $userData['password'];
+        $name = $data['name'];
+        $email = $data['email'];
+        $password = $data['password'];
 
         try {
             
