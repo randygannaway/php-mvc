@@ -10,7 +10,7 @@ include(dirname(__DIR__) . "/layout.php");
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
             <h1 class="page-header">Welcome to Las Esposas</h1>  
-            <p class="lead">This site serves one purpose, it's a timecard for your relationship.</p>
+            <p class="lead">This site serves one purpose,;<br/> it's a timecard for your relationship.</p>
             
             <p>Balancing contributions to family management chores can be difficult. <i>Las Esposas</i> helps track what you do so that when its time for a break you and your partner know who has earned it!</p>
             

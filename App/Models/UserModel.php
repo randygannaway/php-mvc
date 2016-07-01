@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use PDO;
 use App\Interfaces\Modelling;
 use App\Interfaces\Databasing;
 
@@ -9,11 +10,11 @@ use App\Interfaces\Databasing;
  **/
 class UserModel implements Modelling
 {
-    public $databasing;
+    public $database;
 
-    public function __construct(Databasing $databasing)
+    public function __construct(Databasing $database)
     {
-        $this->databasing = $databasing;
+        $this->database = $database;
     }
 
     /**
@@ -22,7 +23,7 @@ class UserModel implements Modelling
      */
     public function create($data)
     {
-        $db = $this->databasing->getDb();
+        $db = $this->database->getDb();
 
         $name = $data['name'];
         $email = $data['email'];
@@ -46,13 +47,13 @@ class UserModel implements Modelling
         return false;
     }
 
-    public function read($data)
+    public function read($email)
     {
         try {
-            $db = $this->databasing->getDb();
+            $db = $this->database->getDb();
 
-            $stmt = $db->prepare("SELECT * FROM users WHERE email = :data LIMIT 1");
-            $stmt->bindParam(':data', $data);
+            $stmt = $db->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+            $stmt->bindParam(':email', $email);
             $stmt->execute();
             $user = $stmt->fetchAll();
 

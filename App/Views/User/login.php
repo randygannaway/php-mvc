@@ -1,7 +1,6 @@
 <?php
 
 // Get checked status of the "remember "me option
-$remember_me = isset($_POST['remember_me']);
 // Detect cookie here and revert to LoginCookieController
 
 $title = 'Login';
@@ -35,7 +34,7 @@ include(dirname(__DIR__) . "/layout.php");
                     
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="remember-me"> Remember me
+                            <input type="checkbox" name="remember" value="remember"> Remember me
                         </label>
                     </div>
 

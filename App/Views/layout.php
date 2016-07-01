@@ -57,7 +57,7 @@
                     <!--<li class="dropdown-header">Login/Signup</li>-->
                     <li><a href="/login">Login</a></li>
                     <li><a href="/users/signup">Sign Up</a></li>
-                    <li><a href="/auth/logout">Log Out</a></li>
+                    <li><a href="/logout">Log Out</a></li>
                   </ul>
                 </li>
                 <!--<li>

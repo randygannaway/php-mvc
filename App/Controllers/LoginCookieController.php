@@ -13,11 +13,11 @@ use Core\Login;
 
 class LoginCookieController extends Login implements Cookieing
 {
-    protected $modelInterface;
+    protected $model;
 
-    public function __construct(Modelling $modelInterface)
+    public function __construct(Modelling $model)
     {
-        $this->modelInterface = $modelInterface;
+        $this->model = $model;
     }
 
     /**
@@ -29,7 +29,7 @@ class LoginCookieController extends Login implements Cookieing
         $data['expiry'] = time() + 60 * 60 * 24 * 30; // set expiry to 30 days from now
         $data['id'] = $_SESSION(['id']);
         
-        $this->modelInterface->create($data);
+        $this->model->create($data);
         
     }
 

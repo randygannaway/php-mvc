@@ -42,13 +42,15 @@ class UserController implements UserEditing
      * @param $password
      * @return mixed
      */
-    public function read($userInfo)
+    public function read($userData)
     {
+        $email = $userData['email'];
+        $password = $userData['password'];
+        
         $user = $this->model->read($email);
+        $hash = $user[0]['password'];
 
         if ($user !== null) {
-
-            $hash = $user[0]['password'];
 
             // Checked hashed password
             if (password_verify($password, $hash)) {

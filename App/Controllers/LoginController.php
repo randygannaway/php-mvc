@@ -7,7 +7,6 @@ namespace App\Controllers;
 use App\Interfaces\Viewing;
 use App\Interfaces\UserEditing;
 use App\Interfaces\Cookieing;
-use Core\View;
 use Core\Login;
 
 class LoginController extends Login
@@ -40,15 +39,14 @@ class LoginController extends Login
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $user = $this->userEditing->read($email, $password);
+        $user = $this->userEditing->read($_POST);
 
         if ($user !== NULL) {
-
+var_dump($_SESSION);
             $_SESSION['user'] = $user[0];
             session_regenerate_id();
 
-            if ($remember_me) {
-
+            if (isset($_POST['remember'])) {
                 $this->cookieing->createCookie();
             }
 
@@ -58,7 +56,7 @@ class LoginController extends Login
             
             $_SESSION['invalid'] = true;
 
-            $this->viewing->redirect('/login');
+            $this->viewing->redirect('/error');
         }        
     }
 

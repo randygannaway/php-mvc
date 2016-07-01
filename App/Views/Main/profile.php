@@ -2,10 +2,12 @@
 $title = "Profile";
 include(dirname(__DIR__) . "/layout.php");
 ?>
-
+// TODO block this page from non-logged in users
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
+            <?php var_dump($_SESSION); ?>
+
             <h1 class="page-header">Welcome <?php echo $_SESSION['user']['name']; ?></h1>
 
             <p class="lead">This site serves one purpose, it's a timecard for your relationship.</p>
