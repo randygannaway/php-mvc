@@ -11,5 +11,5 @@ abstract class Login
 {
     abstract public function login();
 
-    abstract public function logout();
+
 }
