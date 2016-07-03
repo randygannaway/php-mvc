@@ -20,16 +20,15 @@ class ProfilesController extends \Core\Controller
 
     public function index()
     {
-        $earned = $this->earnedByUserInterface->read();
+//        $earned = $this->earnedByUserInterface->read();
     
-//        if (isset($_SESSION['user'])) {
-//            $this->Viewing->render('Main/profile', $earned );
-//        } else {
-//            $this->Viewing->redirect('auth/login');
-//        }
-
+        if (isset($_SESSION['user'])) {
             $this->Viewing->render('Main/profile', $earned );
-    }
+        } else {
+            $this->Viewing->redirect('login');
+        }
+
+     }
     
     
 }

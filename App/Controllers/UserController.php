@@ -11,12 +11,12 @@ use App\Models\UserModel;
 
 class UserController implements UserEditing
 {
-    protected $viewing;
     protected $model;
 
     public function __construct(Modelling $model)
     {
         $this->model = $model;
+        
     }
 
     public function index()

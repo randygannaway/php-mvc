@@ -1,5 +1,4 @@
 <?php
-
 $title = 'Contact';
 include(dirname(__DIR__) . "/layout.php");
 ?>
@@ -12,4 +11,4 @@ include(dirname(__DIR__) . "/layout.php");
     </div>
 </div>
 
-<?php include(dirname(__DIR__) . "  /footer.php"); ?>
+<?php include(dirname(__DIR__) . "/footer.php"); ?>

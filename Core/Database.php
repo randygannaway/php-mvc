@@ -11,7 +11,7 @@ class Database implements Databasing
  
     public function getDb() {
     
-        static $db = null;
+        $db = null;
 
         if ($db === null) {
             try {

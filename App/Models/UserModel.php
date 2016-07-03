@@ -1,9 +1,9 @@
 <?php
 namespace App\Models;
 
-use PDO;
-use App\Interfaces\Modelling;
 use App\Interfaces\Databasing;
+use App\Interfaces\Modelling;
+
 
 /**
  * User Model

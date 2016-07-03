@@ -4,12 +4,12 @@
  */
 namespace App\Controllers;
 
+use App\Interfaces\Cookieing;
 use App\Interfaces\Viewing;
 use App\Interfaces\UserEditing;
-use App\Interfaces\Cookieing;
-use Core\Login;
+use App\Interfaces\LoggingIn;
 
-class LoginController extends Login
+class LoginController implements LoggingIn
 {
     protected $cookieing;
     protected $viewing;
@@ -36,42 +36,38 @@ class LoginController extends Login
 
     public function login()
     {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $user = $this->userEditing->read($_POST);
-
-        if ($user !== NULL) {
-var_dump($_SESSION);
-            $_SESSION['user'] = $user[0];
-            session_regenerate_id();
-
-            if (isset($_POST['remember'])) {
-                $this->cookieing->createCookie();
-            }
-
-            $this->viewing->render('Main/profile', $user[0]);
-
-        } else {
-            
-            $_SESSION['invalid'] = true;
-
-            $this->viewing->redirect('/error');
-        }        
-    }
-
-    public function logout()
-    {
         if (isset($_COOKIE['remember_token'])) {
 
-            $this->cookieing->deleteCookie();
+            // Find user that has the token set (the token is hashed in the database)
+            $user = $this->cookieing->read(sha1($_COOKIE['remember_token']));
+        } else {
 
-            setcookie('remember_token', '', time() - 3600);
-    
+            $user = $this->userEditing->read($_POST);
         }
+
+        if ($user !== NULL) {
+
+            $_SESSION['user'] = $user[0];
+
+            if (isset($_POST['remember'])) {
+                $this->cookieing->create();
+            }
+
+            $this->viewing->redirect('/profile');
+        } else {
+
+            $_SESSION['invalid'] = true;
+            $this->viewing->redirect('/error');
+        }
+    }
+    public function logout()
+    {
 
         $_SESSION = array();
         session_destroy();
+
+        $this->cookieing->delete();
+
 
         $this->viewing->redirect('/home');
     }

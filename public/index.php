@@ -13,12 +13,16 @@ spl_autoload_register( function ($class) {
 $router = new Core\Router();
 $viewer = new Core\View();
 $db = new Core\Database();
+
 $starsmodel = new App\Models\StarModel($db);
 $usermodel = new \App\Models\UserModel($db);
 $logincookiemodel = new \App\Models\LoginCookieModel($db);
+
 $starscontroller = new App\Controllers\StarsController($viewer, $starsmodel);
 $usercontroller = new \App\Controllers\UserController($usermodel);
 $logincookiecontroller = new \App\Controllers\LoginCookieController($logincookiemodel);
+$logincontroller = new \App\Controllers\LoginController($viewer, $usercontroller, $logincookiecontroller);
+
 
 // TODO add dynamic router
 $router->add('', ['controller' => 'Homes', 'action' => 'index']);
@@ -31,5 +35,10 @@ $router->add('users/create', ['controller' => 'RegisterController', 'action' => 
 $router->add('profile', ['controller' => 'ProfilesController', 'action' => 'index', 'dependency1' => $starscontroller]);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $logincookiecontroller]);
 $router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
-
+if (isset($_COOKIE['remember_token'])){
+    if (isset($_SESSION['user'])){
+    } else {
+        $logincontroller->login();
+    }
+}
 $router->dispatch($viewer, $_SERVER['QUERY_STRING']);

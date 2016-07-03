@@ -5,19 +5,23 @@
 namespace App\Models;
 
 use PDO;
+use App\Interfaces\Databasing;
 use App\Interfaces\Modelling;
 
 class LoginCookieModel implements Modelling
 {
     protected $data;
+    public $database;
+
+    public function __construct(Databasing $database)
+    {
+        $this->database = $database;
+    }
     
     public function create($data)
     {
-        $this->userData = $data;
-
         try {
-
-            $db = static::getDb();
+            $db = $this->database->getDb();
 
             $stmt = $db->prepare('INSERT INTO remembered_logins (token, user_id, expires_at) values (:token, :user_id, :expires_at)');
             $stmt->bindParam(':token', sha1($data['token']));
@@ -26,7 +30,7 @@ class LoginCookieModel implements Modelling
             $stmt->execute();
 
             if ($stmt->rowCount() == 1) {
-                setcookie('remember_token', $data['token'], $data['expiry']);
+                setcookie('remember_token', $data['token'], $data['expiry'], '/');
                 return true;
             } else {
                 return false;
@@ -36,11 +40,11 @@ class LoginCookieModel implements Modelling
         }
     }
     
-    public function read($user_id)
+    public function read($token)
     {
         try {
 
-            $db = static::getDb();
+            $db = $this->database->getDb();
 
             $stmt= $db->prepare('SELECT u.* FROM users u JOIN remembered_logins r ON u.id = r.user_id WHERE token = :token');
             $stmt->bindParam(':token', $token);
@@ -63,8 +67,18 @@ class LoginCookieModel implements Modelling
         
     }
 
-    public function delete($data)
+    public function delete($token)
     {
-        
+        try {
+
+            $db = $this->database->getDb();
+
+            $stmt = $db->prepare('DELETE FROM remembered_logins WHERE token = :token');
+            $stmt->execute([':token' => $token]);
+
+        } catch (PDOException $exception) {
+
+            echo ($exception->getMessage());
+        }
     }
 }

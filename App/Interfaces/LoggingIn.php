@@ -5,11 +5,13 @@
  * Date: 6/30/16
  * Time: 2:25 PM
  */
-namespace Core;
+namespace App\Interfaces;
 
-abstract class Login
+interface LoggingIn
 {
-    abstract public function login();
+    public function login();
+
+    public function logout();
 
 
 }

@@ -16,8 +16,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://daneden.github.io/animate.css/animate.min.css" rel="stylesheet">
-    
+
     <!-- Custom styles for this template -->
     <link href="/css/sidebar.css" rel="stylesheet">
     <!-- <link href="/css/signin.css" rel="stylesheet"> -->
@@ -74,3 +73,6 @@
           </button>
         
     <!-- Page content-->
+            <?php if (isset($_COOKIE['remember_token'])){
+            echo "<h1>Cookie</h1>";
+            } ?>

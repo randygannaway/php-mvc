@@ -6,7 +6,9 @@ namespace App\Interfaces;
 
 interface Cookieing
 {
-    public function createCookie();
+    public function create();
 
-    public function deleteCookie();
+    public function read($token);
+
+    public function delete();
 }
