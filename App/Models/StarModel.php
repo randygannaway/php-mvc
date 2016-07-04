@@ -19,11 +19,11 @@ class StarModel implements Modelling
 
     /**
      * StarModel constructor.
-     * @param Databasing $databasing
+     * @param Databasing $database
      */
-    public function __construct(Databasing $databasing)
+    public function __construct(Databasing $database)
     {
-        $this->databasing = $databasing;
+        $this->databasing = $database;
     }
 
     public function create($data)
@@ -34,12 +34,14 @@ class StarModel implements Modelling
     public function read($data)
     {
         $db = $this->databasing->getDb();
+        $user_id = $data['id'];
 
-        $stmt = $db->query('SELECT num_stars FROM stars WHERE user_id = :user_id');
-        $stmt->bindParam(':token', $user_id);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $db->prepare('SELECT num_stars FROM stars WHERE user_id = :user_id');
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
 
-        return $results;
+        return $results[0];
     }
 
     public function update($data)

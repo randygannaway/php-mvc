@@ -35,7 +35,6 @@ include(dirname(__DIR__) . "/layout.php");
 
                     <p class="lead"></p>
                     <p>If you're not registered <a href="/users/signup">go sign up!</a></p>
-<?php echo $_SERVER['SERVER_NAME']; ?>
                 </form>
             </div>
         </div>

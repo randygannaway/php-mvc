@@ -17,6 +17,7 @@ class View implements Viewing
         if ($args !== null) {
             extract($args, EXTR_SKIP);
         }
+        
         $file = dirname(__DIR__) . "/App/Views/$view" . ".php";
 
         if (is_readable($file)) {

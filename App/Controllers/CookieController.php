@@ -11,7 +11,7 @@ use App\Interfaces\Cookieing;
 use App\Interfaces\Modelling;
 use Core\Login;
 
-class LoginCookieController implements Cookieing
+class CookieController implements Cookieing
 {
     protected $model;
 
@@ -51,7 +51,7 @@ class LoginCookieController implements Cookieing
      */
     public function delete()
     {
-        if ($_COOKIE['remember_token']) {
+        if (isset($_COOKIE['remember_token'])) {
             unset($_COOKIE['remember_token']);
             $this->model->delete(sha1($_COOKIE['remember_token']));
             setcookie('remember_token', '', time() - 3600, '/');

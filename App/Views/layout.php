@@ -45,6 +45,9 @@
                     <a href="/home"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
                 <li>
+                    <a href="/dashboard"><i class="fa fa-fw fa-folder"></i>Dashboard</a>
+                </li>
+                <li>
                     <a href="/profile"><i class="fa fa-fw fa-folder"></i> Profile</a>
                 </li>
                 <li>
@@ -73,6 +76,3 @@
           </button>
         
     <!-- Page content-->
-            <?php if (isset($_COOKIE['remember_token'])){
-            echo "<h1>Cookie</h1>";
-            } ?>

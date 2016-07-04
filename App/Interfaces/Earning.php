@@ -9,12 +9,10 @@ namespace App\Interfaces;
 
 interface Earning
 {
-    public function create();
+    public function earn();
     
-    public function read();
+    public function retrieve();
     
-    public function update();
-    
-    public function delete();
+    public function spend();
     
 }

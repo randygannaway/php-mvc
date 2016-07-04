@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Interfaces\Earning;
+use App\Interfaces\ProfilesInterface;
+use App\Interfaces\UserEditing;
 use Core\View;
 use App\Models\HomeModel;
 use App\Interfaces\Viewing;
@@ -12,20 +14,18 @@ class ProfilesController extends \Core\Controller
     protected $viewing;
     protected $earnedByUserInterface;
 
-    public function __construct(Viewing $viewing, Earning $earnedByUserInterface)
+    public function __construct(Viewing $viewing, UserEditing $userEditing)
     {
-        $this->Viewing = $viewing;
-        $this->earnedByUserInterface = $earnedByUserInterface;
+        $this->viewing = $viewing;
     }
 
     public function index()
     {
-//        $earned = $this->earnedByUserInterface->read();
-    
+    $earned = [];
         if (isset($_SESSION['user'])) {
-            $this->Viewing->render('Main/profile', $earned );
+            $this->viewing->render('Main/profile', $earned );
         } else {
-            $this->Viewing->redirect('login');
+            $this->viewing->redirect('login');
         }
 
      }

@@ -69,7 +69,7 @@ class LoginController implements LoggingIn
         $this->cookieing->delete();
 
 
-        $this->viewing->redirect('/home');
+        $this->viewing->render('Main/loggedout');
     }
 
 }

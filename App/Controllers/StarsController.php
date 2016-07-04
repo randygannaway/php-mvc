@@ -13,32 +13,27 @@ class StarsController extends Controller implements Earning
 {
 
     protected $viewing;
-    protected $modelInterface;
+    protected $model;
 
-    public function __construct(Viewing $viewing, Modelling $modelInterface)
+    public function __construct(Viewing $viewing, Modelling $model)
     {
-        $this->Viewing = $viewing;
-        $this->modelInterface = $modelInterface;
+        $this->viewing = $viewing;
+        $this->model = $model;
     }
 
-    public function create()
+    public function earn()
     {
-        // Get stars for a user
-        $stars = $this->modelInterface->read($_SESSION['user_id']);
     }
 
-    public function read()
+    public function retrieve()
     {
-        // Add stars to a user   
+        $stars = $this->model->read($_SESSION['user']);
+        return $stars[0];
     }
 
-    public function update()
-    {
-        
-    }
-
-    public function delete ()
+    public function spend()
     {
         
     }
+
 }
