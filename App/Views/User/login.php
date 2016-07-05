@@ -3,11 +3,7 @@ $title = 'Login';
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header">Las Esposas</h1>
-
-<?php if (isset($_SESSION['message'])): ?>
-<h2>You are already logged in.<h2>
-        <?php endif; ?>
+    <h1 class="page-header">Las Esposas</h1>
 
         <div class="col-lg-4">
         </div>
