@@ -105,7 +105,7 @@
             <state relative-caret-position="360">
               <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
               <folding>
-                <marker date="1467735231346" expanded="true" signature="640:692" ph="SELECT num_s... stars" />
+                <marker date="1467735456343" expanded="true" signature="640:692" ph="SELECT num_s... stars" />
               </folding>
             </state>
           </provider>
@@ -535,12 +535,12 @@
       <workItem from="1467393679510" duration="1764000" />
       <workItem from="1467398413393" duration="56587000" />
       <workItem from="1467597053938" duration="11110000" />
-      <workItem from="1467679251766" duration="11800000" />
+      <workItem from="1467679251766" duration="12306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143869000" />
+    <option name="totallyTimeSpent" value="144375000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -943,15 +943,15 @@
           <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
           <folding>
             <element signature="e#111#141#0#PHP" expanded="true" />
-            <marker date="1467735231346" expanded="true" signature="701:795" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="701:833" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="701:857" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="701:895" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="701:1120" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="701:1127" ph="INSERT INTO tasks... " />
-            <marker date="1467735231346" expanded="true" signature="1738:1827" ph="SELECT t.* F... users" />
-            <marker date="1467735231346" expanded="true" signature="2284:2375" ph="SELECT t.* F... users" />
-            <marker date="1467735231346" expanded="true" signature="2376:2377" ph="SELECT * FRO... tasks" />
+            <marker date="1467735456343" expanded="true" signature="701:795" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="701:833" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="701:857" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="701:895" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="701:1120" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="701:1127" ph="INSERT INTO tasks... " />
+            <marker date="1467735456343" expanded="true" signature="1738:1827" ph="SELECT t.* F... users" />
+            <marker date="1467735456343" expanded="true" signature="2284:2375" ph="SELECT t.* F... users" />
+            <marker date="1467735456343" expanded="true" signature="2376:2377" ph="SELECT * FRO... tasks" />
           </folding>
         </state>
       </provider>
@@ -977,7 +977,7 @@
         <state relative-caret-position="360">
           <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
           <folding>
-            <marker date="1467735231346" expanded="true" signature="640:692" ph="SELECT num_s... stars" />
+            <marker date="1467735456343" expanded="true" signature="640:692" ph="SELECT num_s... stars" />
           </folding>
         </state>
       </provider>
