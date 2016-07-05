@@ -11,21 +11,20 @@ use App\Interfaces\Viewing;
 
 class ProfilesController extends \Core\Controller
 {
-    protected $viewing;
+    protected $view;
     protected $earnedByUserInterface;
 
-    public function __construct(Viewing $viewing, UserEditing $userEditing)
+    public function __construct(Viewing $view, UserEditing $userEditing)
     {
-        $this->viewing = $viewing;
+        $this->view = $view;
     }
 
     public function index()
     {
-    $earned = [];
         if (isset($_SESSION['user'])) {
-            $this->viewing->render('Main/profile', $earned );
+            $this->view->render('Main/profile');
         } else {
-            $this->viewing->redirect('login');
+            $this->view->redirect('login');
         }
 
      }

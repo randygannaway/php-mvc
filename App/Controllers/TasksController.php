@@ -25,9 +25,13 @@ class TasksController implements Tasking
 
     public function index()
     {
-        $tasks = $this->changeTasks($_SESSION['user']['id']);
+        if (isset($_SESSION['user'])) {
 
-        $this->view->render("User/tasks", $tasks);
+            $tasks = $this->changeTasks($_SESSION['user']['id']);
+            $this->view->render("User/tasks", $tasks);
+        } else {
+            $this->view->redirect('login');
+        }
     }
 
     public function addTasks()

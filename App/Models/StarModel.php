@@ -40,10 +40,10 @@ class StarModel implements Modelling
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         $results = $stmt->fetchAll();
+        $results = $results[0]['num_stars'];
 
         if (!empty($results)){
-
-            return $results[0];
+            return $results;
         } else {
             return null;
         }

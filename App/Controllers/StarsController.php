@@ -15,9 +15,9 @@ class StarsController extends Controller implements Earning
     protected $viewing;
     protected $model;
 
-    public function __construct(Viewing $viewing, Modelling $model)
+    public function __construct(Viewing $view, Modelling $model)
     {
-        $this->viewing = $viewing;
+        $this->viewing = $view;
         $this->model = $model;
     }
 
