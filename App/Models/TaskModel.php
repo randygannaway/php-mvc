@@ -20,9 +20,40 @@ class TaskModel implements Modelling
     {
         $this->database = $database;
     }
+
     public function create($data)
     {
-        // TODO: Implement create() method.
+        $for_user_email = $data['for_user_email'];
+        $task_name = $data['task_name'];
+        $star_value = $data['star_value'];
+        $description = $data['description'];
+        $creator = $_SESSION['user']['id'];
+
+        try {
+
+            $db = $this->database->getDb();
+
+            $stmt = $db->prepare('INSERT INTO tasks (task_name, task_description, created_by_id, star_value, for_user_id) SELECT 
+                                    :task_name AS task_name, 
+                                    :description AS task_description, 
+                                    :creator AS created_by_id, 
+                                    :star_value AS star_value,
+                                    id FROM users WHERE email = :email');
+
+            $stmt->bindParam(':email', $for_user_email);
+            $stmt->bindParam(':task_name', $task_name);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':creator', $creator);
+            $stmt->bindParam(':star_value', $star_value);
+
+            $stmt->execute();
+            return true;
+
+        } catch (PDOException $exception) {
+            echo $exception->getMessage();
+        }
+
+        return false;
     }
 
     public function read($data)
@@ -32,6 +63,7 @@ class TaskModel implements Modelling
             $db = $this->database->getDb();
 
             $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = :user_id');
+//            'SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = (SELECT id FROM users WHERE email = 'randy@randy.com')'
             $stmt->bindParam(':user_id', $data);
             $stmt->execute();
             $tasks = $stmt->fetchAll();

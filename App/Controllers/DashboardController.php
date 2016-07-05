@@ -28,7 +28,7 @@ class DashboardController
         if (isset($_SESSION['user'])) {
 
             $totalEarned = $this->earning->retrieve();
-            $tasks = $this->tasks->viewTasks();
+            $tasks = $this->tasks->viewTasks($_SESSION['user']['id']);
 
             $this->view->render("User/dashboard", [$totalEarned, $tasks]);
         } else {

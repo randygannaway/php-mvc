@@ -30,7 +30,11 @@ body a {
   text-decoration: underline;
 }
 body a:hover {
-  color: #006600`;
+  color: #006600;
+}
+
+.btn-block {
+  margin-top: 15px;
 }
 
 .nav .open > a {
@@ -120,7 +124,6 @@ body a:hover {
   background-color: #55acee;
 }
 
-}
 .sidebar-nav li:hover:before {
   -webkit-transition: width 0.2s ease-in;
   transition: width 0.2s ease-in;

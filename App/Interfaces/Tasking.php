@@ -11,7 +11,7 @@ interface Tasking
 {
     public function addTasks();
 
-    public function viewTasks();
+    public function viewTasks($user);
 
     public function changeTasks();
 

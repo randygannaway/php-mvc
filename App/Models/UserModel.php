@@ -23,7 +23,7 @@ class UserModel implements Modelling
      */
     public function create($data)
     {
-        $db = $this->database->getDb();
+        $db = $this->database->getDb(); 
 
         $name = $data['name'];
         $email = $data['email'];

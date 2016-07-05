@@ -48,7 +48,10 @@
                     <a href="/dashboard"><i class="fa fa-fw fa-folder"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="/profile"><i class="fa fa-fw fa-folder"></i> Profile</a>
+                    <a href="/tasks"><i class="fa fa-fw fa-folder"></i>Tasks</a>
+                </li>
+                <li>
+                    <a href="/profile"><i class="fa fa-fw fa-folder"></i>Profile</a>
                 </li>
                 <li>
                     <a href="/contact"><i class="fa fa-fw fa-file-o"></i> Contact</a>
@@ -62,9 +65,6 @@
                     <li><a href="/logout">Log Out</a></li>
                   </ul>
                 </li>
-                <!--<li>
-                    <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
-                </li>-->
         </nav>
         <!-- /#sidebar-wrapper -->
 

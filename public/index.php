@@ -23,7 +23,7 @@ $starscontroller = new App\Controllers\StarsController($viewer, $starsmodel);
 $usercontroller = new \App\Controllers\UserController($usermodel);
 $cookiecontroller = new \App\Controllers\CookieController($logincookiemodel);
 $logincontroller = new \App\Controllers\LoginController($viewer, $usercontroller, $cookiecontroller);
-$taskscontroller = new \App\Controllers\TasksController($taskmodel);
+$taskscontroller = new \App\Controllers\TasksController($viewer, $taskmodel);
 
 
 // TODO add dynamic router
@@ -38,6 +38,10 @@ $router->add('profile', ['controller' => 'ProfilesController', 'action' => 'inde
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
 $router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
 $router->add('dashboard', ['controller' => 'DashboardController', 'action' => 'index', 'dependency1' => $starscontroller, 'dependency2' => $taskscontroller]);
+$router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
+
+$router->add('tasks/addTasks', ['controller' => 'TasksController', 'action' => 'addTasks', 'dependency1' => $taskmodel,]);
+
 if (isset($_COOKIE['remember_token'])){
     if (isset($_SESSION['user'])){
     } else {

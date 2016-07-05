@@ -9,13 +9,38 @@ include(dirname(__DIR__) . "/layout.php");
 
             <h1 class="page-header">Welcome <?php echo $_SESSION['user']['name']; ?></h1>
 
-            <p class="lead">This site serves one purpose, it's a timecard for your relationship.</p>
-            <h4>This week you have earned: <?php echo $num_stars; ?>  stars</h4>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Profile settings</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge"><a href="/home"><?php echo $_SESSION['user']['name']; ?></a></span>
+                                Name
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">14</span>
+                                Email
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">14</span>
+                                Password
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">14</span>
+                                ???
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">14</span>
+                                ???
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
 
-            <h4>You have used: 10 vetoes this month</h4>  
-
-            <a class="twitter-follow-button" href="https://twitter.com/randy_gannaway"></a>
-
+            </div>
         </div>
     </div>
 </div>

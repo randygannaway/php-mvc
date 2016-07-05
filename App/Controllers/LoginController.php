@@ -53,7 +53,7 @@ class LoginController implements LoggingIn
                 $this->cookieing->create();
             }
 
-            $this->viewing->redirect('/profile');
+            $this->viewing->redirect('/dashboard');
         } else {
 
             $_SESSION['invalid'] = true;
