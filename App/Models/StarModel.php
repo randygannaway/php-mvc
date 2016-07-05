@@ -41,7 +41,13 @@ class StarModel implements Modelling
         $stmt->execute();
         $results = $stmt->fetchAll();
 
-        return $results[0];
+        if (!empty($results)){
+
+            return $results[0];
+        } else {
+            return null;
+        }
+
     }
 
     public function update($data)

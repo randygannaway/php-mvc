@@ -35,7 +35,7 @@ class TasksController implements Tasking
         echo "what";
         $this->model->create($_POST);
 
-        $this->view->redirect("/dashboard");
+        $this->view->redirect("/tasks");
     }
 
     public function viewTasks($for_user)
