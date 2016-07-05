@@ -25,7 +25,9 @@ class TasksController implements Tasking
 
     public function index()
     {
-        $this->view->render("User/tasks");
+        $tasks = $this->changeTasks($_SESSION['user']['id']);
+
+        $this->view->render("User/tasks", $tasks);
     }
 
     public function addTasks()
@@ -36,16 +38,17 @@ class TasksController implements Tasking
         $this->view->redirect("/dashboard");
     }
 
-    public function viewTasks($user)
+    public function viewTasks($for_user)
     {
-        $tasks = $this->model->read($user);
+        $tasks = $this->model->read($for_user);
 
         return $tasks;
     }
 
-    public function changeTasks()
+    public function changeTasks($creator)
     {
-
+        $tasks = $this->model->update($creator);
+        return $tasks;
     }
 
     public function deleteTasks()

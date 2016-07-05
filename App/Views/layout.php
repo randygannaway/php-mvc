@@ -76,3 +76,7 @@
           </button>
         
     <!-- Page content-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">

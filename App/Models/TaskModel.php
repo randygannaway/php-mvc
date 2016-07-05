@@ -56,15 +56,14 @@ class TaskModel implements Modelling
         return false;
     }
 
-    public function read($data)
+    public function read($for_user_id)
     {
         try {
 
             $db = $this->database->getDb();
 
             $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = :user_id');
-//            'SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = (SELECT id FROM users WHERE email = 'randy@randy.com')'
-            $stmt->bindParam(':user_id', $data);
+            $stmt->bindParam(':user_id', $for_user_id);
             $stmt->execute();
             $tasks = $stmt->fetchAll();
 
@@ -79,10 +78,24 @@ class TaskModel implements Modelling
 
     }
 
-    public function update($data)
+    public function update($creator_id)
     {
-        // TODO: Implement update() method.
-    }
+        try {
+
+            $db = $this->database->getDb();
+
+            $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE created_by_id = :creator');
+            $stmt->bindParam(':creator', $creator_id);
+            $stmt->execute();
+            $tasks = $stmt->fetchAll();
+
+            if ($tasks !== null){
+                return $tasks;
+            }
+        } catch (PDOException $exception) {
+
+            echo $exception->getMessage();
+        }    }
 
     public function delete($data)
     {

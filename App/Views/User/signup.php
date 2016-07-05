@@ -19,9 +19,9 @@ include(dirname(__DIR__) . "/layout.php");
 
                     <h2 class="form-signin-heading">Sign Up</h2>
 
-                    <label for="inputEmail" class="sr-only">Name</label>
-                    <input type="name" id="name" name="name" id="inputEmail" class="form-control" 
-                            placeholder="Email address" required autofocus>
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="name" id="name" name="name" id="inputName" class="form-control"
+                            placeholder="Email address" required autofocus maxlength="15">
                     
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <input type="email" name="email" id="inputEmail" class="form-control" 

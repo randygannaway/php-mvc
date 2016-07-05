@@ -11,9 +11,9 @@ interface Tasking
 {
     public function addTasks();
 
-    public function viewTasks($user);
+    public function viewTasks($for_user_id);
 
-    public function changeTasks();
+    public function changeTasks($creator_id);
 
     public function deleteTasks();
 }
