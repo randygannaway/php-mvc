@@ -84,7 +84,7 @@ class TaskModel implements Modelling
 
             $db = $this->database->getDb();
 
-            $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE created_by_id = :creator');
+            $stmt = $db->prepare('SELECT * FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE created_by_id = :creator');
             $stmt->bindParam(':creator', $creator_id);
             $stmt->execute();
             $tasks = $stmt->fetchAll();

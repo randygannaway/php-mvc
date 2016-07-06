@@ -46,15 +46,16 @@ include(dirname(__DIR__) . "/layout.php");
             <thead>
             <tr>
                 <th>Task</th>
-                <th>For...</th>
+                <th>For</th>
                 <th>Sent on</th>
             </tr>
             </thead>
             <tbody>
+<!--            --><?php //var_dump($args); ?>
             <?php foreach ($args as $task): ?>
                 <tr>
                     <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>
-                    <td class="for_user_email"><?php echo htmlspecialchars($task['for_user_id']); ?></td>
+                    <td class="for_user_email"><?php echo htmlspecialchars($task['name']); ?></td>
                     <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
                     <td class="delete"> <form action="/tasks/deleteTasks" method="POST">
                             <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?>" >
