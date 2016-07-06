@@ -18,7 +18,7 @@ include(dirname(__DIR__) . "/layout.php");
             <h4 class="form-signin-heading">Send someone a task</h4>
 
 
-            <label for="for_user_email" class="">Email the task is for</label>
+            <label for="for_user_email" class="">Email of the person that the task is for</label>
             <input type="email" name="for_user_email" id="for_user_email" class="form-control"
                    placeholder="joe@email.com" required autofocus>
 
@@ -26,7 +26,7 @@ include(dirname(__DIR__) . "/layout.php");
             <input type="text" name="task_name" id="task_name" class="form-control"
                    placeholder="Vacuum" required maxlength="140">
 
-            <label for="description" class="">Short description</label>
+            <label for="description" class="">Short description (optional)</label>
             <input type="text" name="description" id="description" class="form-control"
                    placeholder="Vacuum all rooms and the hall." maxlength="140">
 
@@ -53,11 +53,11 @@ include(dirname(__DIR__) . "/layout.php");
             <tbody>
             <?php foreach ($args as $task): ?>
                 <tr>
-                    <td class="task_name"><?php echo $task['task_name']; ?></td>
-                    <td class="for_user_email"><?php echo $task['for_user_id']; ?></td>
-                    <td class="date"><?php $date = date_create($task['time_created']); echo date_format($date, 'm/d/y'); ?></td>
+                    <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>
+                    <td class="for_user_email"><?php echo htmlspecialchars($task['for_user_id']); ?></td>
+                    <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
                     <td class="delete"> <form action="/tasks/deleteTasks" method="POST">
-                            <input type="hidden"  name="task_id" value="<?php echo $task['id']; ?>" >
+                            <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?>" >
                             <button type="submit" class="pull-right btn btn-link">
                                 <span class="glyphicon glyphicon-trash" title="DELETE" onclick="return confirm('Delete??')"></span>
                             </button>

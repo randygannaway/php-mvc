@@ -57,8 +57,7 @@ class TasksController implements Tasking
 
     public function deleteTasks()
     {
-        var_dump($_POST['task_id']);
-        $tasks = $this->model->delete($_POST['task_id']);
-        return $tasks;
+        $this->model->delete($_POST['task_id']);
+        $this->view->redirect("/tasks");
     }
 }

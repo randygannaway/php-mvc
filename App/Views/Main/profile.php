@@ -3,7 +3,7 @@ $title = "Profile";
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header">Welcome <?php echo $_SESSION['user']['name']; ?></h1>
+<h1 class="page-header">Welcome <?php echo htmlspecialchars($_SESSION['user']['name'], ENT_COMPAT, 'UTF-8'); ?></h1>
 
 <div class="panel panel-info">
     <div class="panel-heading">
@@ -13,7 +13,7 @@ include(dirname(__DIR__) . "/layout.php");
         <ul>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <span class="badge"><a href="/home"><?php echo $_SESSION['user']['name']; ?></a></span>
+                    <span class="badge"><a href="/home"><?php echo htmlspecialchars($_SESSION['user']['name'], ENT_COMPAT, 'UTF-8'); ?></a></span>
                     Name
                 </li>
                 <li class="list-group-item">
@@ -37,6 +37,5 @@ include(dirname(__DIR__) . "/layout.php");
     </div>
 
 </div>
-
 
 <?php include(dirname(__DIR__) . "/footer.php"); ?>
