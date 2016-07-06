@@ -1,7 +1,7 @@
 <?php
 $title = "Dashboard";
 include(dirname(__DIR__) . "/layout.php");
-git ?>
+?>
 
     <h1 class="page-header"><?php echo $_SESSION['user']['name']; ?>'s Dashboard</h1>
     <h4>You have earned: <?php echo $args[0]; ?> stars!</h4>

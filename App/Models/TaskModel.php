@@ -89,17 +89,32 @@ class TaskModel implements Modelling
             $stmt->execute();
             $tasks = $stmt->fetchAll();
 
-            if ($tasks !== null){
+            if ($tasks !== null) {
                 return $tasks;
             }
         } catch (PDOException $exception) {
 
             echo $exception->getMessage();
-        }    }
+        }
+    }
 
-    public function delete($data)
+    public function delete($task_id)
     {
-        // TODO: Implement delete() method.
+        try {
+
+            $db = $this->database->getDb();
+
+            $stmt = $db->prepare('DELETE FROM tasks WHERE id = :task_id');
+            $stmt->bindParam(':task_id', $task_id);
+            $stmt->execute();
+
+            if ($stmt == true) {
+                return true;
+            }
+        } catch (PDOException $exception) {
+
+            echo $exception->getMessage();
+        }
     }
 
 

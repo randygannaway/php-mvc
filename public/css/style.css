@@ -35,17 +35,24 @@ body a:hover {
 }
 
 .task_name {
-  width: 50%;
+  width: 45%;
 }
 
 .for_user_email {
-  width: 40%;
+  width: 35%;
+}
+
+.delete {
+  width: 10%;
 }
 
 .date {
   width: 10%;
 }
 
+.btn-link {
+  padding: 5px;
+}
 .btn-block {
   margin-top: 15px;
 }
