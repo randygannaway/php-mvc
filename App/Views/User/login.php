@@ -3,7 +3,7 @@ $title = 'Login';
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-    <h1 class="page-header">Las Esposas</h1>
+    <h1 class="page-header">Txors</h1>
 
         <div class="col-lg-4">
         </div>

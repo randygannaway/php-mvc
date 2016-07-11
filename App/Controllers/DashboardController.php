@@ -27,10 +27,10 @@ class DashboardController
     {
         if (isset($_SESSION['user'])) {
 
-            $totalEarned = $this->earning->retrieve();
+            $earned = $this->earning->retrieve();
             $tasks = $this->tasks->viewTasks($_SESSION['user']['id']);
 
-            $this->view->render("User/dashboard", [$totalEarned, $tasks]);
+            $this->view->render("User/dashboard", [$earned, $tasks]);
         } else {
             $this->view->redirect("/login");
         }

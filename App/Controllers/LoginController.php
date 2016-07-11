@@ -28,7 +28,7 @@ class LoginController implements LoggingIn
         
         if (isset($_SESSION['user'])) {
             
-            $_SESSION['message'] = 'You are already logged in.';
+            $this->viewing->redirect('/dashboard');
         }
             $this->viewing->render('User/login');
 

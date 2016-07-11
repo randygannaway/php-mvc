@@ -36,7 +36,7 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="/home">
-                       Las Esposas
+                       Txors
                     </a>
                 </li>
                 <li>

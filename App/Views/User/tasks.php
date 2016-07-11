@@ -10,7 +10,7 @@ $title = 'Send Tasks';
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header">Las Esposas</h1>
+<h1 class="page-header">Txors</h1>
 
 <div class="col-lg-12">
     <div class="col-lg-6">
@@ -41,7 +41,6 @@ include(dirname(__DIR__) . "/layout.php");
     </div>
     <div class="col-lg-6">
         <h4>Tasks you have sent</h4>
-        <?php //previously sent tasks here ?>
         <table class="table">
             <thead>
             <tr>
@@ -51,7 +50,6 @@ include(dirname(__DIR__) . "/layout.php");
             </tr>
             </thead>
             <tbody>
-<!--            --><?php //var_dump($args); ?>
             <?php foreach ($args as $task): ?>
                 <tr>
                     <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>

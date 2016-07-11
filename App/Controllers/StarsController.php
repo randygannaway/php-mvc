@@ -27,7 +27,7 @@ class StarsController extends Controller implements Earning
 
     public function retrieve()
     {
-        $stars = $this->model->read($_SESSION['user']);
+        $stars = $this->model->read($_SESSION['user']['id']);
         return $stars;
     }
 

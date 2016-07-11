@@ -38,7 +38,9 @@ $router->add('profile', ['controller' => 'ProfilesController', 'action' => 'inde
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
 $router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
 $router->add('dashboard', ['controller' => 'DashboardController', 'action' => 'index', 'dependency1' => $starscontroller, 'dependency2' => $taskscontroller]);
+
 $router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
+$router->add('tasks/viewTasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
 $router->add('tasks/addTasks', ['controller' => 'TasksController', 'action' => 'addTasks', 'dependency1' => $taskmodel,]);
 $router->add('tasks/deleteTasks', ['controller' => 'TasksController', 'action' => 'deleteTasks', 'dependency1' => $taskmodel,]);
 

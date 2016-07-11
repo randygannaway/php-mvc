@@ -1,28 +1,5 @@
-/*-------------------------------*/
-/*           VARIABLES           */
-/*-------------------------------*/
-body {
-  color: #04036f;
-  height: 100%;
-  background-color: #ffffff;
-  position: relative;
-  overflow-x: hidden;
-}
-body a {
-  color: #000;
-  text-decoration: underline;
-}
-body a:hover {
-  color: #c90609;
-}
-body blockquote {
-  color: #0806eb;
-}
-body img {
-  max-height: 100%;
-  max-width: 100%;
-}
 /*Nav*/
+
 .nav .open > a {
   background-color: transparent;
 }
@@ -109,6 +86,7 @@ body img {
 .sidebar-nav li:before {
   background-color: #808080;
 }
+
 .sidebar-nav li:hover:before {
   -webkit-transition: width 0.2s ease-in;
   transition: width 0.2s ease-in;
@@ -165,6 +143,7 @@ body img {
   z-index: 999;
   color: #009900;
 }
+
 .hamburger:hover {
   outline: none;
 }
@@ -201,17 +180,17 @@ body img {
 }
 .hamburger.is-closed .hamb-top {
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: #404040;
+  background-color: @navIcon;
   top: 5px;
 }
 .hamburger.is-closed .hamb-middle {
-  background-color: #404040;
+  background-color: @navIcon;
   margin-top: -2px;
   top: 50%;
 }
 .hamburger.is-closed .hamb-bottom {
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: #404040;
+  background-color: @navIcon;
   bottom: 5px;
 }
 .hamburger.is-closed .hamb-top,
@@ -275,19 +254,4 @@ body img {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
-}
-.btn-link {
-  padding: 5px;
-}
-.btn-block {
-  margin-top: 15px;
-}
-canvas {
-  background-color: #ffffff;
-  width: 100%;
-  height: auto;
-}
-.list-group-item {
-  background-color: #ffffff;
-  border-color: #000;
 }

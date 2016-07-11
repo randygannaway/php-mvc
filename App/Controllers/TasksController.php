@@ -36,7 +36,6 @@ class TasksController implements Tasking
 
     public function addTasks()
     {
-        echo "what";
         $this->model->create($_POST);
 
         $this->view->redirect("/tasks");

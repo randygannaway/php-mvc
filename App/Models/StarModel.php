@@ -31,16 +31,14 @@ class StarModel implements Modelling
         
     }
     
-    public function read($data)
+    public function read($user_id)
     {
         $db = $this->databasing->getDb();
-        $user_id = $data['id'];
-
-        $stmt = $db->prepare('SELECT num_stars FROM stars WHERE user_id = :user_id');
+        $stmt = $db->prepare('SELECT date_earned, SUM(num_stars) AS num_stars FROM `stars` WHERE user_id = :user_id 
+                              GROUP BY DAY(date_earned) ORDER BY date_earned ASC LIMIT 7 ');
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
-        $results = $stmt->fetchAll();
-        $results = $results[0]['num_stars'];
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($results)){
             return $results;

@@ -11,6 +11,7 @@ namespace App\Models;
 
 use App\Interfaces\Databasing;
 use App\Interfaces\Modelling;
+use PDO;
 
 class TaskModel implements Modelling
 {
@@ -65,7 +66,7 @@ class TaskModel implements Modelling
             $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = :user_id');
             $stmt->bindParam(':user_id', $for_user_id);
             $stmt->execute();
-            $tasks = $stmt->fetchAll();
+            $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($tasks !== null){
                 return $tasks;

@@ -15,26 +15,33 @@ use App\Interfaces\Registering;
 class RegisterController implements Registering
 {
     protected $userEditing;
-    protected $viewer;
+    protected $viewing;
 
-    public function __construct(Viewing $viewer, UserEditing $userEditing)
+    public function __construct(Viewing $viewing, UserEditing $userEditing)
     {
         $this->userEditing = $userEditing;
-        $this->viewer = $viewer;
+        $this->viewing = $viewing;
     }
 
     public function index()
     {
-        $this->viewer->render('User/signup');
+
+
+        if (isset($_SESSION['user'])) {
+
+            $this->viewing->redirect('/dashboard');
+        }
+        
+        $this->viewing->render('User/signup');
     }
 
     public function createRegistration()
     {
         $registered = $this->userEditing->create($_POST);
         if ($registered == true) {
-            $this->viewer->render('Main/profile');
+            $this->viewing->render('Main/profile');
         } else {
-            $this->viewer->redirect('Error');
+            $this->viewing->redirect('Error');
         }
     }
 
