@@ -3,8 +3,6 @@ $title = "Dashboard";
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header"><?php echo htmlspecialchars($_SESSION['user']['name'], ENT_COMPAT, 'UTF-8'); ?>'s Dashboard</h1>
-
 <div class="col-lg-12">
     <div id="starGraph" class="col-lg-6">
 <!-- TODO add total stars to this-->
@@ -18,14 +16,17 @@ include(dirname(__DIR__) . "/layout.php");
             <thead>
             <tr>
                 <th>Task</th>
+                <th>Stars</th>
                 <th>Created On</th>
-                <th></th>
+                <th>Done!</th>
+
             </tr>
             </thead>
             <tbody>
             <?php foreach ($args[1] as $task): ?>
                 <tr>
                     <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>
+                    <td class="star_value"><?php echo htmlspecialchars($task['star_value']); ?></td>
                     <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
                     <td class="complete">
                         <form action="/tasks/changeTasks" method="POST">

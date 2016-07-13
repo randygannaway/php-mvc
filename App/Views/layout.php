@@ -78,3 +78,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1 class="page-header">Txors for <?php echo htmlspecialchars($_SESSION['user']['name'], ENT_COMPAT, 'UTF-8'); ?></h1>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="img/vacuum.jpg" class="img-circle">
+                            </div>
+                        </div>

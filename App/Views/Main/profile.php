@@ -3,8 +3,6 @@ $title = "Profile";
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header">Welcome <?php echo htmlspecialchars($_SESSION['user']['name'], ENT_COMPAT, 'UTF-8'); ?></h1>
-
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">Profile settings</h3>

@@ -2,14 +2,7 @@
 $title="Home";
 include(dirname(__DIR__) . "/layout.php");
 ?>
-<div class="row">
-    <div class="col-md-8">
-        <h1 class="page-header">Txors</h1>
-    </div>
-    <div class="col-md-4">
-        <img src="img/vacuum.jpg" class="img-circle">
-    </div>
-</div>
+
 <div class="row">
 <p class="lead">This site serves one purpose;<br/> it's a timecard for your relationship.</p>
 

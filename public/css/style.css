@@ -286,7 +286,10 @@ body img {
   border-color: #000;
 }
 #taskList .task_name {
-  width: 45%;
+  width: 40%;
+}
+#taskList .star_value {
+  width: 10%;
 }
 #taskList .for_user_email {
   width: 35%;
@@ -294,8 +297,11 @@ body img {
 #taskList .delete {
   width: 10%;
 }
-#taskList .date {
+#taskList .complete {
   width: 10%;
+}
+#taskList .date {
+  width: 30%;
 }
 #taskList .btn-link {
   padding: 5px;

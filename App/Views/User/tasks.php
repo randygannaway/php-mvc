@@ -10,8 +10,6 @@ $title = 'Send Tasks';
 include(dirname(__DIR__) . "/layout.php");
 ?>
 
-<h1 class="page-header">Txors</h1>
-
 <div class="col-lg-12">
     <div class="col-lg-6">
         <form class="form-signin" action="/tasks/addTasks" method="post">
