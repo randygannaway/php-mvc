@@ -13,19 +13,37 @@ include(dirname(__DIR__) . "/layout.php");
 
     </div>
     <div id="taskList" class="col-lg-6 list-group">
-        <h4>Your current available tasks are:</h4>
+        <h4>Tasks for you to complete</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Task</th>
+                <th>Created On</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
             <?php foreach ($args[1] as $task): ?>
-
-                <li href="#" class="list-group-item">
-                    <?php echo htmlspecialchars($task['task_name'], ENT_COMPAT, 'UTF-8'); ?>
-                    <span class="did-it"><a href="#">Did it!</a></span>
-                </li>
+                <tr>
+                    <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>
+                    <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
+                    <td class="delete">
+                        <form action="/tasks/changeTasks" method="POST">
+                            <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?>" >
+                                <button type="submit" class="pull-right btn btn-link">
+                                    <span class="glyphicon glyphicon-thumbs-up" title="complete" onclick="return confirm('Complete this task?')"></span>
+                                </button>
+                        </form>
+                    </td>
+                </tr>
             <?php endforeach; ?>
+
+            </tbody>
+        </table>
     </div>
 </div>
 
 
 <?php include(dirname(__DIR__) . "/footer.php"); ?>
 
-<!--THIS needs to be separate and included-->
 <?php include("js/dashboardScripts.php"); ?>

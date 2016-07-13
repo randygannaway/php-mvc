@@ -27,12 +27,12 @@ class TasksController implements Tasking
     {
         if (isset($_SESSION['user'])) {
 
-            $tasks = $this->changeTasks($_SESSION['user']['id']);
+            $tasks = $this->viewTasksCreated();
             $this->view->render("User/tasks", $tasks);
         } else {
             $this->view->redirect('login');
         }
-    }
+     }
 
     public function addTasks()
     {
@@ -41,22 +41,35 @@ class TasksController implements Tasking
         $this->view->redirect("/tasks");
     }
 
-    public function viewTasks($for_user)
+    public function viewTasksCreated()
     {
-        $tasks = $this->model->read($for_user);
+        $tasks = $this->model->read($user = 'created_by_id');
 
         return $tasks;
     }
 
-    public function changeTasks($creator)
+
+    public function viewTasksToComplete()
     {
-        $tasks = $this->model->update($creator);
+        $tasks = $this->model->read($user = 'for_user_id');
+
         return $tasks;
+    }
+
+
+    public function changeTasks()
+    {
+
+        $this->model->update($_POST['task_id']);
+
+        $this->view->redirect("/dashboard");
+
     }
 
     public function deleteTasks()
     {
         $this->model->delete($_POST['task_id']);
+
         $this->view->redirect("/tasks");
     }
 }

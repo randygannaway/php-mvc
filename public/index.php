@@ -43,6 +43,7 @@ $router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', '
 $router->add('tasks/viewTasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
 $router->add('tasks/addTasks', ['controller' => 'TasksController', 'action' => 'addTasks', 'dependency1' => $taskmodel,]);
 $router->add('tasks/deleteTasks', ['controller' => 'TasksController', 'action' => 'deleteTasks', 'dependency1' => $taskmodel,]);
+$router->add('tasks/changeTasks', ['controller' => 'TasksController', 'action' => 'changeTasks', 'dependency1' => $taskmodel,]);
 
 if (isset($_COOKIE['remember_token'])){
     if (isset($_SESSION['user'])){

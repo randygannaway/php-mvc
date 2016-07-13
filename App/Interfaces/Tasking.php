@@ -18,13 +18,15 @@ interface Tasking
      * @param $for_user_id
      * @return 
      */
-    public function viewTasks($for_user_id);
+    public function viewTasksCreated();
 
+    public function viewTasksToComplete();
+    
     /**
      * @param $creator_id
      * @return mixed
      */
-    public function changeTasks($creator_id);
+    public function changeTasks();
 
     /**
      * @return mixed

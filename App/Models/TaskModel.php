@@ -57,14 +57,14 @@ class TaskModel implements Modelling
         return false;
     }
 
-    public function read($for_user_id)
+    public function read($column)
     {
         try {
 
             $db = $this->database->getDb();
 
-            $stmt = $db->prepare('SELECT t.* FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE for_user_id = :user_id');
-            $stmt->bindParam(':user_id', $for_user_id);
+            $stmt = $db->prepare("SELECT * FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE $column = :user_id AND completed = 0");
+            $stmt->bindParam(':user_id', $_SESSION['user']['id']);
             $stmt->execute();
             $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -79,14 +79,14 @@ class TaskModel implements Modelling
 
     }
 
-    public function update($creator_id)
+    public function update($task_id)
     {
         try {
 
             $db = $this->database->getDb();
 
-            $stmt = $db->prepare('SELECT * FROM users u JOIN tasks t ON u.id = t.for_user_id WHERE created_by_id = :creator');
-            $stmt->bindParam(':creator', $creator_id);
+            $stmt = $db->prepare('UPDATE tasks SET completed=1 WHERE id = :task_id');
+            $stmt->bindParam(':task_id', $task_id);
             $stmt->execute();
             $tasks = $stmt->fetchAll();
 

@@ -2,9 +2,9 @@
 /*           VARIABLES           */
 /*-------------------------------*/
 body {
-  color: #04036f;
+  color: #000000;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #e9eaea;
   position: relative;
   overflow-x: hidden;
 }
@@ -16,7 +16,7 @@ body a:hover {
   color: #c90609;
 }
 body blockquote {
-  color: #0806eb;
+  color: #404040;
 }
 body img {
   max-height: 100%;
@@ -201,17 +201,17 @@ body img {
 }
 .hamburger.is-closed .hamb-top {
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: #404040;
+  background-color: #292b2b;
   top: 5px;
 }
 .hamburger.is-closed .hamb-middle {
-  background-color: #404040;
+  background-color: #292b2b;
   margin-top: -2px;
   top: 50%;
 }
 .hamburger.is-closed .hamb-bottom {
   -webkit-transition: all 0.35s ease-in-out;
-  background-color: #404040;
+  background-color: #292b2b;
   bottom: 5px;
 }
 .hamburger.is-closed .hamb-top,
@@ -276,18 +276,27 @@ body img {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
-.btn-link {
-  padding: 5px;
-}
-.btn-block {
-  margin-top: 15px;
-}
-canvas {
-  background-color: #ffffff;
+#starGraph canvas {
+  background-color: #e9eaea;
   width: 100%;
   height: auto;
 }
-.list-group-item {
-  background-color: #ffffff;
+#taskList .list-group-item {
+  background-color: #e9eaea;
   border-color: #000;
+}
+#taskList .task_name {
+  width: 45%;
+}
+#taskList .for_user_email {
+  width: 35%;
+}
+#taskList .delete {
+  width: 10%;
+}
+#taskList .date {
+  width: 10%;
+}
+#taskList .btn-link {
+  padding: 5px;
 }

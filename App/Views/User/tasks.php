@@ -40,7 +40,7 @@ include(dirname(__DIR__) . "/layout.php");
         </form>
     </div>
     <div class="col-lg-6">
-        <h4>Tasks you have sent</h4>
+        <h4>Tasks you still want completed</h4>
         <table class="table">
             <thead>
             <tr>
