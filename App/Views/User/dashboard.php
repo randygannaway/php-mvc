@@ -27,11 +27,12 @@ include(dirname(__DIR__) . "/layout.php");
                 <tr>
                     <td class="task_name"><?php echo htmlspecialchars($task['task_name']); ?></td>
                     <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
-                    <td class="delete">
+                    <td class="complete">
                         <form action="/tasks/changeTasks" method="POST">
                             <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?>" >
-                                <button type="submit" class="pull-right btn btn-link">
-                                    <span class="glyphicon glyphicon-thumbs-up" title="complete" onclick="return confirm('Complete this task?')"></span>
+                                <button type="submit" class="pull-right btn btn-link"
+                                        onclick="return confirm('Complete the task: <?php echo htmlspecialchars($task['task_name']); ?>')">
+                                    <span class="glyphicon glyphicon-thumbs-up" title="complete"></span>
                                 </button>
                         </form>
                     </td>

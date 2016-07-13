@@ -56,9 +56,10 @@ include(dirname(__DIR__) . "/layout.php");
                     <td class="for_user_email"><?php echo htmlspecialchars($task['name']); ?></td>
                     <td class="date"><?php $date = date_create($task['time_created']); echo htmlspecialchars(date_format($date, 'm/d/y')); ?></td>
                     <td class="delete"> <form action="/tasks/deleteTasks" method="POST">
-                            <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?>" >
-                            <button type="submit" class="pull-right btn btn-link">
-                                <span class="glyphicon glyphicon-trash" title="DELETE" onclick="return confirm('Delete??')"></span>
+                            <input type="hidden"  name="task_id" value="<?php echo htmlspecialchars($task['id'], ENT_COMPAT, 'UTF-8'); ?> " >
+                            <button type="submit" class="pull-right btn btn-link" 
+                                    onclick="return confirm('Delete the task: <?php echo htmlspecialchars($task['task_name']); ?>')">
+                                <span class="glyphicon glyphicon-trash" title="DELETE"></span>
                             </button>
                         </form>
                     </td>
