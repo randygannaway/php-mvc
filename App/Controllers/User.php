@@ -9,7 +9,7 @@ use App\Interfaces\Viewing;
 use App\Interfaces\UserEditing;
 use App\Models\UserModel;
 
-class UserController implements UserEditing
+class User implements UserEditing
 {
     protected $model;
 

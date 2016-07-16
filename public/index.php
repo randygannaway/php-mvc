@@ -9,41 +9,60 @@ spl_autoload_register( function ($class) {
     }
 }); 
 
-// TODO change all this to a reflection API DIC
-$router = new Core\Router();
-$viewer = new Core\View();
 $db = new Core\Database();
 
-$starsmodel = new App\Models\StarModel($db);
-$usermodel = new \App\Models\UserModel($db);
-$logincookiemodel = new \App\Models\LoginCookieModel($db);
-$taskmodel = new \App\Models\TaskModel($db);
+$dc = new Core\Dependencies();
 
-$starscontroller = new App\Controllers\StarsController($viewer, $starsmodel);
-$usercontroller = new \App\Controllers\UserController($usermodel);
-$cookiecontroller = new \App\Controllers\CookieController($logincookiemodel);
-$logincontroller = new \App\Controllers\LoginController($viewer, $usercontroller, $cookiecontroller);
-$taskscontroller = new \App\Controllers\TasksController($viewer, $taskmodel);
+$dc->addDependency(
+    'App\Controllers\Homes',
+        ['App\Interfaces\Viewing' => 'Core\View']
+    );
+
+$dc->addDependency(
+    'App\Controllers\Login',
+        ['App\Interfaces\Viewing' => 'Core\View',
+        'App\Interfaces\UserEditing' => 'App\Controllers\User',
+        'App\Interfaces\Cookieing' => 'App\Controllers\Cookies']
+    );
+
+$dc->addDependency(
+    'App\Controllers\User',
+        ['App\Interfaces\Modelling' => 'App\Models\UserModel',]
+    );
+
+$router = new Core\Router($dc);
+
+
+//$starsmodel = new App\Models\StarModel($db);
+//$usermodel = new \App\Models\UserModel($db);
+//$logincookiemodel = new \App\Models\LoginCookieModel($db);
+//$taskmodel = new \App\Models\TaskModel($db);
+//
+//$starscontroller = new App\Controllers\StarsController($viewer, $starsmodel);
+//$usercontroller = new \App\Controllers\User($usermodel);
+//$cookiecontroller = new \App\Controllers\Cookies($logincookiemodel);
+//$logincontroller = new \App\Controllers\Login($viewer, $usercontroller, $cookiecontroller);
+//$taskscontroller = new \App\Controllers\TasksController($viewer, $taskmodel);
 
 
 // TODO add dynamic router
 $router->add('', ['controller' => 'Homes', 'action' => 'index']);
 $router->add('home', ['controller' => 'Homes', 'action' => 'index']);
 $router->add('home/add', ['controller' => 'Homes', 'action' => 'add']);
-$router->add('login', ['controller' => 'LoginController', 'action' => 'index', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
-$router->add('auth/login', ['controller' => 'LoginController', 'action' => 'login', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
-$router->add('users/signup', ['controller' => 'RegisterController', 'action' => 'index', 'dependency1' => $usercontroller]);
-$router->add('users/create', ['controller' => 'RegisterController', 'action' => 'createRegistration', 'dependency1' => $usercontroller]);
-$router->add('profile', ['controller' => 'ProfilesController', 'action' => 'index', 'dependency1' => $usercontroller, 'dependency2' => $taskscontroller]);
-$router->add('logout', ['controller' => 'LoginController', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
-$router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
-$router->add('dashboard', ['controller' => 'DashboardController', 'action' => 'index', 'dependency1' => $starscontroller, 'dependency2' => $taskscontroller]);
-
-$router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
-$router->add('tasks/viewTasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
-$router->add('tasks/addTasks', ['controller' => 'TasksController', 'action' => 'addTasks', 'dependency1' => $taskmodel,]);
-$router->add('tasks/deleteTasks', ['controller' => 'TasksController', 'action' => 'deleteTasks', 'dependency1' => $taskmodel,]);
-$router->add('tasks/changeTasks', ['controller' => 'TasksController', 'action' => 'changeTasks', 'dependency1' => $taskmodel,]);
+//$router->add('login', ['controller' => 'Login', 'action' => 'index']);
+//$router->add('auth/login', ['controller' => 'Login', 'action' => 'login']);
+//$router->add('users/signup', ['controller' => 'RegisterController', 'action' => 'index', 'dependency1' => $usercontroller]);
+//$router->add('users/create', ['controller' => 'RegisterController', 'action' => 'createRegistration', 'dependency1' => $usercontroller]);
+//$router->add('profile', ['controller' => 'ProfilesController', 'action' => 'index', 'dependency1' => $usercontroller, 'dependency2' => $taskscontroller]);
+//$router->add('logout', ['controller' => 'Login', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
+//$router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
+//$router->add('dashboard', ['controller' => 'DashboardController', 'action' => 'index', 'dependency1' => $starscontroller, 'dependency2' => $taskscontroller]);
+//
+//$router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
+//$router->add('tasks/viewTasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);
+//$router->add('tasks/addTasks', ['controller' => 'TasksController', 'action' => 'addTasks', 'dependency1' => $taskmodel,]);
+//$router->add('tasks/deleteTasks', ['controller' => 'TasksController', 'action' => 'deleteTasks', 'dependency1' => $taskmodel,]);
+//$router->add('tasks/changeTasks', ['controller' => 'TasksController', 'action' => 'changeTasks', 'dependency1' => $taskmodel,]);
 
 if (isset($_COOKIE['remember_token'])){
     if (isset($_SESSION['user'])){
@@ -51,4 +70,4 @@ if (isset($_COOKIE['remember_token'])){
         $logincontroller->login();
     }
 }
-$router->dispatch($viewer, $_SERVER['QUERY_STRING']);
+$router->dispatch($_SERVER['QUERY_STRING']);

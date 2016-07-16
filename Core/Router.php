@@ -11,6 +11,11 @@ class Router
     protected $routes = [];
 
     protected $params = [];
+
+    public function __construct(Dependencies $dependencies)
+    {
+        $this->dependencies = $dependencies;
+    }
     
     public function add($route, $params = []) 
     {
@@ -29,28 +34,19 @@ class Router
         return false;
     }
 
-    public function dispatch($viewing, $url)
+    public function dispatch($url)
     {
         $url = $this->removeQueryStringVariables($url);
 
 
         if ($this->match($url)) {
             $controller = $this->params['controller'];
-            $controller = "App\Controllers\\$controller";
+            $controller = "App\\Controllers\\$controller";
 
           if (class_exists($controller)) {
-              if (isset($this->params['dependency2'])){
-                  $dependency2 = $this->params['dependency2'];
-                  $dependency1 = $this->params['dependency1'];
-                  $controller_object = new $controller($viewing, $dependency1, $dependency2, $this->params);
+//              $controller_object = new $controller($this->params);
 
-              } elseif (isset($this->params['dependency1'])){
-                  $dependency1 = $this->params['dependency1'];
-                  $controller_object = new $controller($viewing, $dependency1, $this->params);
-
-              } else {
-                  $controller_object = new $controller($viewing, $this->params);
-              }
+              $controller_object = $this->dependencies->resolve($controller);
 
               $action = $this->params['action'];
 

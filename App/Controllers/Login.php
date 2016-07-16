@@ -9,7 +9,7 @@ use App\Interfaces\Viewing;
 use App\Interfaces\UserEditing;
 use App\Interfaces\LoggingIn;
 
-class LoginController implements LoggingIn
+class Login implements LoggingIn
 {
     protected $cookieing;
     protected $viewing;

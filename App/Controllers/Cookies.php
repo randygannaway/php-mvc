@@ -11,7 +11,7 @@ use App\Interfaces\Cookieing;
 use App\Interfaces\Modelling;
 use Core\Login;
 
-class CookieController implements Cookieing
+class Cookies implements Cookieing
 {
     protected $model;
 
