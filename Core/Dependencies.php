@@ -8,11 +8,12 @@
 
 namespace Core;
 
-use App\Interfaces\Viewing;
+use App\Config;
+
 
 class Dependencies
 {
-    protected $dependencies = [];
+    protected $dependencies = Config::DEP_ARRAY;
     
     public function __construct()
     {

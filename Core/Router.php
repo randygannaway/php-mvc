@@ -5,6 +5,7 @@ namespace Core;
 use App\Interfaces\Viewing;
 use Core\Auth;
 
+
 class Router
 {
     

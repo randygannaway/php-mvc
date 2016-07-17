@@ -13,23 +13,6 @@ $db = new Core\Database();
 
 $dc = new Core\Dependencies();
 
-$dc->addDependency(
-    'App\Controllers\Homes',
-        ['App\Interfaces\Viewing' => 'Core\View']
-    );
-
-$dc->addDependency(
-    'App\Controllers\Login',
-        ['App\Interfaces\Viewing' => 'Core\View',
-        'App\Interfaces\UserEditing' => 'App\Controllers\User',
-        'App\Interfaces\Cookieing' => 'App\Controllers\Cookies']
-    );
-
-$dc->addDependency(
-    'App\Controllers\User',
-        ['App\Interfaces\Modelling' => 'App\Models\UserModel',]
-    );
-
 $router = new Core\Router($dc);
 
 
