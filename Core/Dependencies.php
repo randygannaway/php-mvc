@@ -46,7 +46,7 @@ class Dependencies
         }
 
         foreach ($params as $param) {
-            echo "PAram " . $param->getClass()->getName() . "<br>";
+            echo "Param " . $param->getClass()->getName() . "<br>";
             echo "Dependencies " . var_dump($this->dependencies) . "<br>";
             if (isset($this->dependencies[$class][$param->getClass()->getName()])) {
                 $dep = $this->dependencies[$class][$param->getClass()->getName()];

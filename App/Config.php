@@ -18,7 +18,8 @@ class Config
         'App\Controllers\Login' => ['App\Interfaces\Viewing' => 'Core\View',
                                     'App\Interfaces\UserEditing' => 'App\Controllers\User',
                                     'App\Interfaces\Cookieing' => 'App\Controllers\Cookies'],
-        'App\Controllers\User' => ['App\Interfaces\Modelling' => 'App\Models\UserModel',]
+        // TODO How to add databasing implicitly
+        'App\Controllers\User' =>  ['App\Interfaces\Modelling' => 'App\Models\UserModel'],
+        'App\Controllers\Cookies' => ['App\Interfaces\Modelling' => 'App\Models\LoginCookieModel'],
     ];
-    
 }
