@@ -2,11 +2,10 @@
 
 namespace Core;
 
-use App\Interfaces\Databasing;
 use PDO;
 use App\Config;
 
-class Database implements Databasing
+class Database
 {
  
     public function getDb() {

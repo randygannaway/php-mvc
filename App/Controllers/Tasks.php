@@ -10,14 +10,14 @@ namespace App\Controllers;
 
 use App\Interfaces\Modelling;
 use App\Interfaces\Tasking;
-use App\Interfaces\Viewing;
+use Core\View;
 
-class TasksController implements Tasking
+class Tasks implements Tasking
 {
     protected $view;
     protected $model;
     
-    public function __construct(Viewing $view, Modelling $model)
+    public function __construct(View $view, Modelling $model)
     {
         $this->model = $model;
         $this->view = $view;

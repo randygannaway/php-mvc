@@ -9,7 +9,6 @@ namespace App\Controllers;
 
 use App\Interfaces\Cookieing;
 use App\Interfaces\Modelling;
-use Core\Login;
 
 class Cookies implements Cookieing
 {

@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\Interfaces\Databasing;
+use Core\Database;
 use App\Interfaces\Modelling;
 
 
@@ -12,7 +12,7 @@ class UserModel implements Modelling
 {
     public $database;
 
-    public function __construct(Databasing $database)
+    public function __construct(Database $database)
     {
         $this->database = $database;
     }

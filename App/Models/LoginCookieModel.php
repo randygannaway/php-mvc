@@ -4,8 +4,8 @@
  */
 namespace App\Models;
 
+use Core\Database;
 use PDO;
-use App\Interfaces\Databasing;
 use App\Interfaces\Modelling;
 
 class LoginCookieModel implements Modelling
@@ -13,7 +13,7 @@ class LoginCookieModel implements Modelling
     protected $data;
     public $database;
 
-    public function __construct(Databasing $database)
+    public function __construct(Database $database)
     {
         $this->database = $database;
     }

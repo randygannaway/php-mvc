@@ -9,18 +9,18 @@
 namespace App\Controllers;
 
 use App\Interfaces\UserEditing;
-use App\Interfaces\Viewing;
 use App\Interfaces\Registering;
+use Core\View;
 
-class RegisterController implements Registering
+class Register implements Registering
 {
     protected $userEditing;
-    protected $viewing;
+    protected $view;
 
-    public function __construct(Viewing $viewing, UserEditing $userEditing)
+    public function __construct(View $view, UserEditing $userEditing)
     {
         $this->userEditing = $userEditing;
-        $this->viewing = $viewing;
+        $this->view = $view;
     }
 
     public function index()
@@ -29,19 +29,19 @@ class RegisterController implements Registering
 
         if (isset($_SESSION['user'])) {
 
-            $this->viewing->redirect('/dashboard');
+            $this->view->redirect('/dashboard');
         }
         
-        $this->viewing->render('User/signup');
+        $this->view->render('User/signup');
     }
 
     public function createRegistration()
     {
         $registered = $this->userEditing->create($_POST);
         if ($registered == true) {
-            $this->viewing->render('Main/profile');
+            $this->view->render('Main/profile');
         } else {
-            $this->viewing->redirect('Error');
+            $this->view->redirect('Error');
         }
     }
 

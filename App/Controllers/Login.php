@@ -5,20 +5,20 @@
 namespace App\Controllers;
 
 use App\Interfaces\Cookieing;
-use App\Interfaces\Viewing;
 use App\Interfaces\UserEditing;
 use App\Interfaces\LoggingIn;
+use Core\View;
 
 class Login implements LoggingIn
 {
     protected $cookieing;
-    protected $viewing;
+    protected $view;
     protected $userEditing;
     protected $token;
     
-    public function __construct(Viewing $viewing, UserEditing $userEditing, Cookieing $cookieing)
+    public function __construct(View $view, UserEditing $userEditing, Cookieing $cookieing)
     {
-        $this->viewing = $viewing;
+        $this->view = $view;
         $this->userEditing = $userEditing;
         $this->cookieing = $cookieing;
     }
@@ -28,9 +28,9 @@ class Login implements LoggingIn
         
         if (isset($_SESSION['user'])) {
             
-            $this->viewing->redirect('/dashboard');
+            $this->view->redirect('/dashboard');
         }
-            $this->viewing->render('User/login');
+            $this->view->render('User/login');
 
     }
 
@@ -53,11 +53,11 @@ class Login implements LoggingIn
                 $this->cookieing->create();
             }
 
-            $this->viewing->redirect('/dashboard');
+            $this->view->redirect('/dashboard');
         } else {
 
             $_SESSION['invalid'] = true;
-            $this->viewing->redirect('/error');
+            $this->view->redirect('/error');
         }
     }
     public function logout()
@@ -69,7 +69,7 @@ class Login implements LoggingIn
         $this->cookieing->delete();
 
 
-        $this->viewing->render('Main/loggedout');
+        $this->view->render('Main/loggedout');
     }
 
 }

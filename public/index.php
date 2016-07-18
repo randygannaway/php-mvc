@@ -29,16 +29,16 @@ $router = new Core\Router($dc);
 
 
 // TODO add dynamic router
-$router->add('', ['controller' => 'Homes', 'action' => 'index']);
-$router->add('home', ['controller' => 'Homes', 'action' => 'index']);
-$router->add('home/add', ['controller' => 'Homes', 'action' => 'add']);
+$router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('home', ['controller' => 'Home', 'action' => 'index']);
+$router->add('home/add', ['controller' => 'Home', 'action' => 'add']);
 $router->add('login', ['controller' => 'Login', 'action' => 'index']);
 $router->add('auth/login', ['controller' => 'Login', 'action' => 'login']);
-//$router->add('users/signup', ['controller' => 'RegisterController', 'action' => 'index', 'dependency1' => $usercontroller]);
-//$router->add('users/create', ['controller' => 'RegisterController', 'action' => 'createRegistration', 'dependency1' => $usercontroller]);
-//$router->add('profile', ['controller' => 'ProfilesController', 'action' => 'index', 'dependency1' => $usercontroller, 'dependency2' => $taskscontroller]);
+$router->add('users/signup', ['controller' => 'Register', 'action' => 'index']);
+$router->add('users/create', ['controller' => 'Register', 'action' => 'createRegistration']);
+$router->add('profile', ['controller' => 'ProfilesController', 'action' => 'index']);
 //$router->add('logout', ['controller' => 'Login', 'action' => 'logout', 'dependency1' => $usercontroller, 'dependency2' => $cookiecontroller]);
-//$router->add('contact', ['controller' => 'Homes', 'action' => 'contact']);
+//$router->add('contact', ['controller' => 'Home', 'action' => 'contact']);
 //$router->add('dashboard', ['controller' => 'DashboardController', 'action' => 'index', 'dependency1' => $starscontroller, 'dependency2' => $taskscontroller]);
 //
 //$router->add('tasks', ['controller' => 'TasksController', 'action' => 'index', 'dependency1' => $taskmodel,]);

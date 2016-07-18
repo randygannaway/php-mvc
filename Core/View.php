@@ -2,10 +2,7 @@
 
 namespace Core;
 
-use App\Interfaces\Viewing;
-
-
-class View implements Viewing
+class View
 {
 
     /**

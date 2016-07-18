@@ -14,12 +14,12 @@ class Config
     const DB_NAME = 'esposas';
 
     const DEP_ARRAY = [
-        'App\Controllers\Homes' => ['App\Interfaces\Viewing' => 'Core\View'],
-        'App\Controllers\Login' => ['App\Interfaces\Viewing' => 'Core\View',
-                                    'App\Interfaces\UserEditing' => 'App\Controllers\User',
+        'App\Controllers\Login' => ['App\Interfaces\UserEditing' => 'App\Controllers\User',
                                     'App\Interfaces\Cookieing' => 'App\Controllers\Cookies'],
-        // TODO How to add databasing implicitly
         'App\Controllers\User' =>  ['App\Interfaces\Modelling' => 'App\Models\UserModel'],
         'App\Controllers\Cookies' => ['App\Interfaces\Modelling' => 'App\Models\LoginCookieModel'],
+        'App\Controllers\Register' => ['App\Interfaces\UserEditing' => 'App\Controllers\User'],
+        'App\Controllers\Profiles' => ['App\Interfaces\UserEditing' => 'App\Controllers\User',
+                                        'App\Interfaces\Tasking' => 'App\Controllers\Tasks'],
     ];
 }

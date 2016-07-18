@@ -14,5 +14,4 @@ namespace App\Interfaces;
  */
 interface Databasing
 {
-    public function getDb();
 }
