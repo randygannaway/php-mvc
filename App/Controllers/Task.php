@@ -12,7 +12,7 @@ use App\Interfaces\Modelling;
 use App\Interfaces\Tasking;
 use Core\View;
 
-class Tasks implements Tasking
+class Task implements Tasking
 {
     protected $view;
     protected $model;

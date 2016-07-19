@@ -9,15 +9,15 @@
 namespace App\Models;
 
 
-use App\Interfaces\Databasing;
 use App\Interfaces\Modelling;
+use Core\Database;
 use PDO;
 
 class TaskModel implements Modelling
 {
     protected $database;
 
-    public function __construct(Databasing $database)
+    public function __construct(Database $database)
     {
         $this->database = $database;
     }

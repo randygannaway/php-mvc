@@ -8,20 +8,19 @@
 
 namespace App\Models;
 
+use Core\Database;
 use PDO;
 use App\Interfaces\Modelling;
-use App\Interfaces\Databasing;
 
 class StarModel implements Modelling
 {
     protected $databasing;
 
-
     /**
      * StarModel constructor.
      * @param Databasing $database
      */
-    public function __construct(Databasing $database)
+    public function __construct(Database $database)
     {
         $this->databasing = $database;
     }
@@ -45,7 +44,6 @@ class StarModel implements Modelling
         } else {
             return null;
         }
-
     }
 
     public function update($data)
@@ -57,6 +55,4 @@ class StarModel implements Modelling
     {
         
     }
-}
-{
 }

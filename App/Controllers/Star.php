@@ -6,16 +6,14 @@ namespace App\Controllers;
 
 use App\Interfaces\Earning;
 use App\Interfaces\Modelling;
-use App\Interfaces\Viewing;
-use Core\Controller;
+use Core\View;
 
-class StarsController extends Controller implements Earning
+class Star implements Earning
 {
-
     protected $viewing;
     protected $model;
 
-    public function __construct(Viewing $view, Modelling $model)
+    public function __construct(View $view, Modelling $model)
     {
         $this->viewing = $view;
         $this->model = $model;
@@ -23,6 +21,7 @@ class StarsController extends Controller implements Earning
 
     public function earn()
     {
+
     }
 
     public function retrieve()
@@ -35,5 +34,4 @@ class StarsController extends Controller implements Earning
     {
         
     }
-
 }

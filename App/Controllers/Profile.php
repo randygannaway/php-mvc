@@ -2,19 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Interfaces\Earning;
-use App\Interfaces\ProfilesInterface;
 use App\Interfaces\UserEditing;
 use Core\View;
-use App\Models\HomeModel;
-use App\Interfaces\Viewing;
 
-class ProfilesController extends \Core\Controller
+class Profile
 {
     protected $view;
     protected $earnedByUserInterface;
 
-    public function __construct(Viewing $view, UserEditing $userEditing)
+    public function __construct(View $view, UserEditing $userEditing)
     {
         $this->view = $view;
     }

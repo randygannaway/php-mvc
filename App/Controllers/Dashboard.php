@@ -8,15 +8,15 @@
 
 namespace App\Controllers;
 
-use App\Interfaces\Viewing;
 use App\Interfaces\Earning;
 use App\Interfaces\Tasking;
+use Core\View;
 
-class DashboardController
+class Dashboard
 {
     protected $view;
 
-    public function __construct(Viewing $view, Earning $earning, Tasking $tasks)
+    public function __construct(View $view, Earning $earning, Tasking $tasks)
     {
         $this->view = $view;
         $this->earning = $earning;
